@@ -1,0 +1,38 @@
+﻿<div class="form-field">
+    <label>(Updated)Registration Amount:</label>
+    <div>
+        <label>@LrrState.AuctionDetails.WhiteValue</label>
+    </div>
+</div>
+
+<div class="form-field">
+    <label>Cash Payment (Black):</label>
+    <div>
+        <label>@LrrState.AuctionDetails.BlackValue</label>
+    </div>
+</div>
+
+<div class="form-field">
+    <label>Auction End Date:</label>
+    <div>
+        <label>@LrrState.AuctionDetails.EndDate.ToString("dd/MMM/yyyy")</label>
+    </div>
+</div>
+
+<div class="form-field">
+    <label>Auction Starting Value:</label>
+    <div>
+        <label>@LrrState.AuctionDetails.FmtStartingValue</label>
+    </div>
+</div>
+
+<div class="form-field">
+    <label>Auction Step Value:</label>
+    <div>
+        <label>@LrrState.AuctionDetails.FmtStepValue</label>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Lrr.Shared.LrrState LrrState { get; set; } 
+}

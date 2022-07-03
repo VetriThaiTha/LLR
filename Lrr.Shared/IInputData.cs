@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Lrr.Shared
+{
+    public interface IInputData
+    {
+        public int WhiteBlackRatio { get; set; }
+        public double PurchaseValue { get; set;}
+        public DateOnly RegistrationDate { get; set; }
+        public int HighestBidValue { get; set; }
+        public DecisionEnum Decision { get; set; }
+
+
+    }
+}

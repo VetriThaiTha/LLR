@@ -1,0 +1,58 @@
+﻿<h3>RegistrationInput</h3>
+
+<div class="form-field">
+    <label>PurchaseValue:</label>
+    <div>
+        <InputNumber id="PurchaseValue"  @bind-Value="LrrState.InputData.PurchaseValue"  />
+    </div>
+</div>
+
+<div class="form-field">
+    <label>WhiteBlackRatio:</label>
+    <div>
+        <InputNumber id="HighestBidValue" @bind-Value="LrrState.InputData.WhiteBlackRatio"    />
+    </div>
+</div>
+
+<div class="form-field">
+    <label>RegistrationDate:</label>
+    <div>
+        <InputDate  @bind-Value="LrrState.InputData.RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
+    </div>
+</div>
+
+<div class="form-field">
+    <label>HighestBidValue:</label>
+    <div>
+        <select class="form-control selectpicker" @bind="LrrState.InputData.HighestBidValue"  >
+            @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
+           {
+               <option>@item</option>
+           }
+        </select>
+
+@*        <InputNumber  @bind-Value="LrrState.InputData.HighestBidValue" @bind-Value:format="F2"   />*@
+    </div>
+</div>
+
+
+
+
+
+<button @onclick="ReCalculateValues">
+        Update Values
+    </button>
+
+@code {
+    [Parameter] public Lrr.Shared.LrrState LrrState { get; set; } 
+
+
+
+
+
+    private void ReCalculateValues()
+    {
+        LrrState.CalculateValues();
+    }
+
+}

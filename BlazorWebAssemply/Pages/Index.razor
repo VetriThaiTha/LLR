@@ -1,0 +1,28 @@
+﻿@page "/"
+@inject Lrr.Shared.LrrState LrrState
+
+<PageTitle>Simple Calculator</PageTitle>
+
+<EditForm Model="@LrrState.InputData" OnValidSubmit="@HandleValidSubmit">
+
+<table style="width:100%" >
+    <tr>
+        <td style="width:40%" >
+            <RegistrationInput LrrState="LrrState"   />
+        </td>
+        <td style="width:60%" >
+            <DisplayDetails LrrState="LrrState"   />
+        </td>
+    </tr>
+
+</table>
+
+</EditForm>
+
+@code{
+        private void HandleValidSubmit()
+    {
+        Console.WriteLine(LrrState.InputData.PurchaseValue);
+
+    }
+}
