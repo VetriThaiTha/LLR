@@ -13,26 +13,44 @@ namespace Lrr.Shared
         public DateOnly EndDate { get; set; }
         public int StartingValue { get; set; }
         public int StepValue { get; set; }
-        public double WhiteValue { get; set; }
-        public double BlackValue { get; set; }
+        public int WhiteValue { get; set; }
+        public int BlackValue { get; set; }
         public List<string> ValidAuctionBidValues { get; set; } = new List<string>();
 
-        public string FmtStartingValue
-        {
-            get
-            {
+        public string FmtStartingValue => FmtIntVal(StartingValue);
+        public string FmtStepValue => FmtIntVal(StepValue);
+        public string FmtWhiteValue => FmtIntVal(WhiteValue);
+        public string FmtBlackValue => FmtIntVal(BlackValue); 
 
-                return StartingValue.ToString("##\\,##\\,##\\,##0");
-                    
-            }
-        }
-        public string FmtStepValue
+        private static string FmtIntVal(int val)
         {
-            get
-            {
-                return string.Format(cultureInfo, "{0:c}", StepValue);
-            }
+            if (val < 1000)
+                return val.ToString("##0");
+
+            if (val < 100000)
+                return val.ToString("##\\,##0");
+            if (val < 10000000)
+                return val.ToString("##\\,##\\,##0");
+            if (val < 1000000000)
+                return val.ToString("##\\,##\\,##\\,##0");
+
+            return val.ToString("##\\,##\\,##\\,##\\,##0");
         }
 
+
+        private static string FmtIntVal(long val)
+        {
+            if (val < 1000)
+                return val.ToString("##0");
+
+            if (val < 100000)
+                return val.ToString("##\\,##0");
+            if (val < 10000000)
+                return val.ToString("##\\,##\\,##0");
+            if (val < 1000000000)
+                return val.ToString("##\\,##\\,##\\,##0");
+
+            return val.ToString("##\\,##\\,##\\,##\\,##0");
+        }
     }
 }
