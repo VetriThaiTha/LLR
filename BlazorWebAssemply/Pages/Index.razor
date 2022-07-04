@@ -14,16 +14,23 @@
             <DisplayDetails LrrState="LrrState"   />
         </td>
     </tr>
-    <tr>
-        <td>
-            <GiveUpPaymentSchedule LrrState="LrrState" />
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <MatchPaymentSchedule LrrState="LrrState" />
-        </td>
-    </tr>
+        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.GiveUpToHighestBid)
+        {
+            <tr>
+                <td>
+                    <GiveUpPaymentSchedule LrrState="LrrState" />
+                </td>
+            </tr>
+        }
+        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.MatchHighestBid)
+        {
+            <tr>
+                <td>
+                    <MatchPaymentSchedule LrrState="LrrState" />
+                </td>
+            </tr>
+        }
+         
 </table>
 
 </EditForm>

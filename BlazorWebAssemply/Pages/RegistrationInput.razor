@@ -25,6 +25,7 @@
     <label>HighestBidValue:</label>
     <div>
         <select class="form-control selectpicker" @bind="LrrState.InputData.HighestBidIndex"  >
+            <option value=-1 >-- Select --</option>
             @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
            {
                <option value=@item.Key >@item.Value</option>
@@ -38,14 +39,11 @@
     <div>
         <select class="form-control selectpicker" @bind="LrrState.InputData.Decision"  >
 
+            <option value=@Lrr.Shared.DecisionEnum.None > @((Lrr.Shared.DecisionEnum.None) )</option>
             @if (LrrState.InputData.HighestBidIndex > -1)
                 {
-                    <option value=1  > @((Lrr.Shared.DecisionEnum.MatchHighestBid) )</option>
-                    <option value=2 > @((Lrr.Shared.DecisionEnum.GiveUpToHighestBid) )</option>
-                }
-            else
-                {
-                    <option value=0 > @((Lrr.Shared.DecisionEnum.None) )</option>
+                    <option value=@Lrr.Shared.DecisionEnum.MatchHighestBid  > @((Lrr.Shared.DecisionEnum.MatchHighestBid) )</option>
+                    <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > @((Lrr.Shared.DecisionEnum.GiveUpToHighestBid) )</option>
                 }
         </select>
 
@@ -56,10 +54,8 @@
 
 
 
+<button class="btn btn-primary" @onclick="ReCalculateValues">Update Values</button>
 
-<button @onclick="ReCalculateValues">
-        Update Values
-    </button>
 
 @code {
 
