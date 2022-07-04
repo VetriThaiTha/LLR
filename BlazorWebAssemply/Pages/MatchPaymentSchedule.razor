@@ -1,0 +1,53 @@
+﻿<h3>MatchPaymentSchedule</h3>
+
+<table class="table">
+        <thead>
+            <tr>
+                <th> </th>
+                <th>Pay</th>
+                <th>Receive</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Provisional Buyer Additional Capital</td>
+                <td>@LrrState.MatchPaymentSchedule.ProvBuyerAddCapital</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Provisional Buyer Additional Fee</td>
+                <td>@LrrState.MatchPaymentSchedule.ProvBuyerAddCapitalFee</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Original seller Additional Profit </td>
+                <td></td>
+                <td>@LrrState.MatchPaymentSchedule.OriginalSellerProfit</td>
+            </tr>
+            <tr>
+                <td>Broker Additional fee</td>
+                <td></td>
+                <td>@LrrState.MatchPaymentSchedule.BrokerReceive</td>
+            </tr>
+            <tr>
+                <td>Highest Bidder Incentive</td>
+                <td></td>
+                <td>@LrrState.MatchPaymentSchedule.BidderIncentive</td>
+            </tr>
+                        <tr>
+                <td>Government Extra Tax Income</td>
+                <td></td>
+                <td>@LrrState.MatchPaymentSchedule.GovernmentExtraTax</td>
+            </tr>
+            <tr>
+                <td>Government Residual Profit</td>
+                <td></td>
+                <td>@LrrState.MatchPaymentSchedule.GovernmentAddlProfit</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+@code {
+    [Parameter] public Lrr.Shared.LrrState LrrState { get; set; }
+}

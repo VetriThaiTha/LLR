@@ -35,6 +35,8 @@ namespace Lrr.Shared
                 validValues.Add(i, AuctionDetails.FmtIntVal(val));
             }
             auctionDetails.ValidAuctionBidValues = validValues;
+
+
         }
 
         private int GetWhiteValue(IInputData inputData)
