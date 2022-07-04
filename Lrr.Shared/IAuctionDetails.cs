@@ -13,6 +13,7 @@ namespace Lrr.Shared
         public int StepValue { get; set; }
         public int WhiteValue { get; set; }
         public int BlackValue { get; set; }
+
         public Dictionary<int,string> ValidAuctionBidValues { get; set; }
 
         public string FmtStartingValue { get; }

@@ -18,6 +18,7 @@ namespace Lrr.Shared
         public void UpdateAuctionDetails(IInputData inputData, IAuctionDetails auctionDetails)
         {
 
+
             auctionDetails.EndDate = inputData.RegistrationDate.AddMonths(configuration.AuctionDuration);
             auctionDetails.StepValue = (int)Math.Ceiling(inputData.PurchaseValue * configuration.StepValueMultiple);
             auctionDetails.StartingValue = (int)Math.Ceiling(GetWhiteValue(inputData) * configuration.StartingValueMultiple);
@@ -26,6 +27,7 @@ namespace Lrr.Shared
                 
 
             var validValues = new Dictionary<int,string>();
+
 
             for (int i = 0; i <= 100; i++)
             {

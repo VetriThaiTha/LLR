@@ -17,6 +17,7 @@ namespace Lrr.Shared
         public int BlackValue { get; set; }
         public Dictionary<int, string> ValidAuctionBidValues { get; set; } = new Dictionary<int, string>();
 
+
         public string FmtStartingValue => FmtIntVal(StartingValue);
         public string FmtStepValue => FmtIntVal(StepValue);
         public string FmtWhiteValue => FmtIntVal(WhiteValue);
