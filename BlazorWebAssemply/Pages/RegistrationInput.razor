@@ -24,7 +24,7 @@
 <div class="form-field">
     <label>HighestBidValue:</label>
     <div>
-        <select @bind="LrrState.InputData.HighestBidIndex"  >
+        <select @bind="HighestBidIndex"  >
             <option value=-1 >-- Select --</option>
             @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
            {
@@ -37,7 +37,7 @@
 <div class="form-field">
     <label>Prov. buyer Decision:</label>
     <div>
-        <select @bind="LrrState.InputData.Decision"  >
+        <select @bind="Decision"  >
 
             <option value=@Lrr.Shared.DecisionEnum.None > @((Lrr.Shared.DecisionEnum.None) )</option>
             @if (LrrState.InputData.HighestBidIndex > -1)
@@ -98,7 +98,30 @@
         }
     }
 
-    
+    public int HighestBidIndex
+    {
+        get { return LrrState.InputData.HighestBidIndex; }
+        set
+        {
+            if (LrrState.InputData.HighestBidIndex != value) {
+                LrrState.InputData.HighestBidIndex = value;
+                ReCalculateValues();
+            }
+        }
+    }
+
+    public Lrr.Shared.DecisionEnum Decision
+    {
+        get { return LrrState.InputData.Decision; }
+        set
+        {
+            if (LrrState.InputData.Decision != value) {
+                LrrState.InputData.Decision = value;
+                ReCalculateValues();
+            }
+        }
+    }
+
     private void ReCalculateValues()
     {
         LrrState.CalculateValues();
@@ -109,4 +132,9 @@
                 });
     }
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+            ReCalculateValues();
+    }
 }
