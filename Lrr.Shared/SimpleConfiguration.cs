@@ -14,7 +14,7 @@ namespace Lrr.Shared
             RegistrationChargePercentage = 1.0;
             AuctionDuration = 3;
             StartingValueMultiple = 1.25;
-            StepValueMultiple = 0.2;
+            StepValueMultiple = 0.02;
         }
 
         public double StampChargePercentage { get; set; }
