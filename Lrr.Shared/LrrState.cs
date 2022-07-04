@@ -12,7 +12,7 @@ namespace Lrr.Shared
         {
             Calculator = new SimpleCalculator();
             Configuration = new SimpleConfiguration();
-            InputData = new InputData();
+            InputData = new InputData(CalculateValues);
             AuctionDetails = new AuctionDetails();
         }
         public ICalculator Calculator { get; set; }
@@ -23,7 +23,7 @@ namespace Lrr.Shared
 
         public void CalculateValues()
         {
-            AuctionDetails = Calculator.GetAuction(InputData);
+            Calculator.UpdateAuctionDetails(InputData, AuctionDetails);
         }
     }
 }

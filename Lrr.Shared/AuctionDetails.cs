@@ -15,14 +15,14 @@ namespace Lrr.Shared
         public int StepValue { get; set; }
         public int WhiteValue { get; set; }
         public int BlackValue { get; set; }
-        public List<string> ValidAuctionBidValues { get; set; } = new List<string>();
+        public Dictionary<int, string> ValidAuctionBidValues { get; set; } = new Dictionary<int, string>();
 
         public string FmtStartingValue => FmtIntVal(StartingValue);
         public string FmtStepValue => FmtIntVal(StepValue);
         public string FmtWhiteValue => FmtIntVal(WhiteValue);
         public string FmtBlackValue => FmtIntVal(BlackValue); 
 
-        private static string FmtIntVal(int val)
+        public static string FmtIntVal(int val)
         {
             if (val < 1000)
                 return val.ToString("##0");

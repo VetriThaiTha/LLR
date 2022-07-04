@@ -15,26 +15,24 @@ namespace Lrr.Shared
             configuration = new SimpleConfiguration();
         }
 
-        public IAuctionDetails GetAuction(IInputData inputData)
+        public void UpdateAuctionDetails(IInputData inputData, IAuctionDetails auctionDetails)
         {
-            var aDetails = new AuctionDetails
-            {
-                EndDate = inputData.RegistrationDate.AddMonths(configuration.AuctionDuration),
-                StepValue = (int)Math.Ceiling( inputData.PurchaseValue * configuration.StepValueMultiple),
-                StartingValue = (int)Math.Ceiling(GetWhiteValue(inputData) * configuration.StartingValueMultiple),
-                WhiteValue = GetWhiteValue(inputData) ,
-                BlackValue = (inputData.PurchaseValue - GetWhiteValue(inputData)) ,
+
+            auctionDetails.EndDate = inputData.RegistrationDate.AddMonths(configuration.AuctionDuration);
+            auctionDetails.StepValue = (int)Math.Ceiling(inputData.PurchaseValue * configuration.StepValueMultiple);
+            auctionDetails.StartingValue = (int)Math.Ceiling(GetWhiteValue(inputData) * configuration.StartingValueMultiple);
+            auctionDetails.WhiteValue = GetWhiteValue(inputData);
+            auctionDetails.BlackValue = (inputData.PurchaseValue - GetWhiteValue(inputData));
                 
-            };
 
-            var validValues = new List<string>();
+            var validValues = new Dictionary<int,string>();
 
-            for (uint i = 0; i < 100; i++)
+            for (int i = 0; i <= 100; i++)
             {
-                validValues.Add((aDetails.StartingValue +  aDetails.StepValue * i).ToString("##\\,##\\,##\\,##0"));
+                int val = auctionDetails.StartingValue + (i * auctionDetails.StepValue);
+                validValues.Add(i, AuctionDetails.FmtIntVal(val));
             }
-            aDetails.ValidAuctionBidValues = validValues;
-            return aDetails;
+            auctionDetails.ValidAuctionBidValues = validValues;
         }
 
         private int GetWhiteValue(IInputData inputData)

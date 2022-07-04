@@ -11,7 +11,8 @@ namespace Lrr.Shared
         public int WhiteBlackRatio { get; set; }
         public int PurchaseValue { get; set;}
         public DateOnly RegistrationDate { get; set; }
-        public int HighestBidValue { get; set; }
+        public int HighestBidIndex { get; set; } 
+
         public DecisionEnum Decision { get; set; }
 
 
