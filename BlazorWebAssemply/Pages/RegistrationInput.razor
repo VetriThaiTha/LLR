@@ -3,7 +3,7 @@
 <div class="form-field">
     <label>PurchaseValue:</label>
     <div>
-        <InputNumber id="PurchaseValue" @bind-Value="PurchaseValue"    />
+       ₹ <InputNumber id="PurchaseValue" @bind-Value="PurchaseValue"    />
     </div>
 </div>
 
@@ -24,7 +24,7 @@
 <div class="form-field">
     <label>HighestBidValue:</label>
     <div>
-        <select class="form-control selectpicker" @bind="LrrState.InputData.HighestBidIndex"  >
+        <select @bind="LrrState.InputData.HighestBidIndex"  >
             <option value=-1 >-- Select --</option>
             @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
            {
@@ -37,7 +37,7 @@
 <div class="form-field">
     <label>Prov. buyer Decision:</label>
     <div>
-        <select class="form-control selectpicker" @bind="LrrState.InputData.Decision"  >
+        <select @bind="LrrState.InputData.Decision"  >
 
             <option value=@Lrr.Shared.DecisionEnum.None > @((Lrr.Shared.DecisionEnum.None) )</option>
             @if (LrrState.InputData.HighestBidIndex > -1)
