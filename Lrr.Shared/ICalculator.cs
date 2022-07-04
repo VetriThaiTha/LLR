@@ -9,6 +9,7 @@ namespace Lrr.Shared
     public interface ICalculator
     {
         public void UpdateAuctionDetails(IInputData inputData, IAuctionDetails auctionDetails);
-        
+        public IGiveUpPaymentSchedule GetGiveUpPaymentSchedule(IInputData inputData);
+        public IMatchPaymentSchedule GetMatchPaymentSchedule(IInputData inputData);
     }
 }

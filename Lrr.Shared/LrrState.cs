@@ -28,6 +28,8 @@ namespace Lrr.Shared
         public void CalculateValues()
         {
             Calculator.UpdateAuctionDetails(InputData, AuctionDetails);
+            GiveUpPaymentSchedule = Calculator.GetGiveUpPaymentSchedule(InputData);
+            MatchPaymentSchedule = Calculator.GetMatchPaymentSchedule(InputData);
         }
     }
 }

@@ -50,6 +50,6 @@ namespace Lrr.Shared
         [Required]
         public DateOnly RegistrationDate { get; set; }
         public int HighestBidIndex { get; set; } = -1;
-        public DecisionEnum Decision { get; set; }
+        public DecisionEnum Decision { get; set; } = DecisionEnum.None;
     }
 }
