@@ -62,3 +62,21 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+
+.reportTable {
+    font-size: 14px;
+}
+
+.reportHead {
+    font-size: 16px;
+    background-color: #bfdaf6;
+}
+
+.tr-alice {
+    background-color: aliceblue;
+}
+
+.td-notes {
+    font-size:10px;
+}
