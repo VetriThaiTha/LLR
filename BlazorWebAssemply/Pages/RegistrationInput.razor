@@ -1,30 +1,30 @@
 ﻿<h3>RegistrationInput</h3>
 
 <div class="form-field">
-    <label>PurchaseValue:</label>
+    <label>Purchase Value:</label>
     <div>
-       ₹ <InputNumber id="PurchaseValue" @bind-Value="PurchaseValue"    />
+       ₹<InputNumber style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
     </div>
 </div>
 
 <div class="form-field">
-    <label>WhiteBlackRatio:</label>
+    <label>White / Black Ratio:</label>
     <div>
-        <InputNumber id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />
+        <InputNumber style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />%
     </div>
 </div>
 
 <div class="form-field">
-    <label>RegistrationDate:</label>
+    <label>Registration Date:</label>
     <div>
         <InputDate  @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
     </div>
 </div>
 
 <div class="form-field">
-    <label>HighestBidValue:</label>
+    <label>Highest Bid Value:</label>
     <div>
-        <select @bind="LrrState.InputData.HighestBidIndex"  >
+        <select @bind="HighestBidIndex"  >
             <option value=-1 >-- Select --</option>
             @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
            {
@@ -35,38 +35,39 @@
     </div>
 </div>
 <div class="form-field">
-    <label>Prov. buyer Decision:</label>
-    <div>
-        <select @bind="LrrState.InputData.Decision"  >
+    <label>Provisional buyer's decision:</label>
+<!--<div>-->    
+        <select @bind="Decision"  >
 
-            <option value=@Lrr.Shared.DecisionEnum.None > @((Lrr.Shared.DecisionEnum.None) )</option>
+            <option value=@Lrr.Shared.DecisionEnum.None > None </option>
             @if (LrrState.InputData.HighestBidIndex > -1)
                 {
-                    <option value=@Lrr.Shared.DecisionEnum.MatchHighestBid  > @((Lrr.Shared.DecisionEnum.MatchHighestBid) )</option>
-                    <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > @((Lrr.Shared.DecisionEnum.GiveUpToHighestBid) )</option>
+                    <option value=@Lrr.Shared.DecisionEnum.MatchHighestBid  > Match highest Bid</option>
+                    <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > GiveUp to highest Bid</option>
                 }
         </select>
 
-    </div>
+<!-- </div>-->    
 </div>
-
-
-
-
-
+<!--
+<br />
 <button class="btn btn-primary" @onclick="ReCalculateValues">Update Values</button>
-
-
+-->
 @code {
 
 
     [Parameter] public Lrr.Shared.LrrState LrrState { get; set; }
+
+    [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
+
 
     public int PurchaseValue
     {
         get { return LrrState.InputData.PurchaseValue; }
         set
         {
+            if (value < 1)
+                return;
             if (LrrState.InputData.PurchaseValue != value) {
                 LrrState.InputData.PurchaseValue = value;
                 ReCalculateValues();
@@ -79,6 +80,9 @@
         get { return LrrState.InputData.WhiteBlackRatio; }
         set
         {
+            if (value > 100 || value < 0)
+                return;
+
             if (LrrState.InputData.WhiteBlackRatio != value) {
                 LrrState.InputData.WhiteBlackRatio = value;
                 ReCalculateValues();
@@ -98,15 +102,45 @@
         }
     }
 
-    
-    private void ReCalculateValues()
+    public int HighestBidIndex
     {
-        LrrState.CalculateValues();
-        InvokeAsync(() =>
-                {
+        get { return LrrState.InputData.HighestBidIndex; }
+        set
+        {
+            if (LrrState.InputData.HighestBidIndex != value) {
+                LrrState.InputData.HighestBidIndex = value;
 
-                    StateHasChanged();
-                });
+                if (HighestBidIndex < 0)
+                    Decision = Lrr.Shared.DecisionEnum.None;
+
+                ReCalculateValues();
+            }
+        }
     }
 
+    public Lrr.Shared.DecisionEnum Decision
+    {
+        get { return LrrState.InputData.Decision; }
+        set
+        {
+            if (LrrState.InputData.Decision != value) {
+                LrrState.InputData.Decision = value;
+                ReCalculateValues();
+            }
+        }
+    }
+
+    private void ReCalculateValues()
+    {
+        
+        LrrState.CalculateValues();
+        if (RefreshScreen != null)
+            RefreshScreen();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+            ReCalculateValues();
+    }
 }

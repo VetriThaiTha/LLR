@@ -2,63 +2,82 @@
 
 
 <h3>GiveUpPaymentSchedule</h3>
-<table class="table">
-        <thead>
+<table class="table reportTable">
+        <thead class="reportHead">
             <tr>
-                <th> </th>
+                <th>Person</th>
+                <th>Description</th>
                 <th>Pay</th>
                 <th>Receive</th>
+                <th>Notes</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Bidder Purchase price</td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderPay)</td>
+                <td>Bidder</td>
+                <td> New purchase price</td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderPay)</td>
                 <td></td>
+                <td class="td-notes" >New Purchase price</td>
             </tr>
-            <tr>
-                <td>Bidder Fees</td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderFees)</td>
+            <tr class="tr-alice">
+                <td>Bidder</td>
+                <td>Registration fees</td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderFees)</td>
                 <td></td>
-            </tr>
-
-            <tr>
-                <td>Provisional Buyer Capital Refund</td>
-                <td></td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerCapitalRefund)</td>
-            </tr>
-            <tr>
-                <td>Provisional Buyer Fees Refund</td>
-                <td></td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerFeesRefund)</td>
+                <td class="td-notes" >@($"(New Purchase price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)}) * (Stamp charge rate {LrrState.Configuration.StampChargePercentage} + Registraion rate {LrrState.Configuration.RegistrationChargePercentage})")</td>
             </tr>
 
             <tr>
-                <td>Provisional Buyer Compensation</td>
+                <td>Provisional Buyer</td>
+                <td>Refund</td>
                 <td></td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerIncentive)</td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerCapitalRefund)</td>
+                <td class="td-notes" >@($"Old Registration amount")</td>
+            </tr>
+            <tr class="tr-alice">
+                <td>Provisional Buyer</td>
+                <td>Fees refund</td>
+                <td></td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerFeesRefund)</td>
+                <td class="td-notes" >@($"Registration fees previously paid by prov. buyer")</td>
             </tr>
 
             <tr>
-                <td>Original seller Additional Profit </td>
+                <td>Provisional Buyer</td>
+                <td>Compensation</td>
                 <td></td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.OriginalSellerProfit)</td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerIncentive)</td>
+                <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Prov. buyer incentive ratio {LrrState.Configuration.GiveUpProvBuyerIncentiveRatio})")</td>
+            </tr>
+
+            <tr class="tr-alice">
+                <td>Original seller</td>
+                <td>Additional Profit</td>
+                <td></td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.OriginalSellerProfit)</td>
+                <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Seller Incentive ratio {LrrState.Configuration.GiveUpSellerIncentiveRatio})")</td>
             </tr>
             <tr>
-                <td>Broker Additional fee</td>
+                <td>Broker </td>
+                <td>Additional Brokerage</td>
                 <td></td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BrokerReceive)</td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BrokerReceive)</td>
+                <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Brokerage {LrrState.Configuration.Brokerage})")</td>
             </tr>
             <!--
             <tr>
                 <td>Government Extra Tax Income</td>
                 <td></td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentExtraTax)</td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentExtraTax)</td>
+                <td class="td-notes" >@($"")</td>
             </tr>-->
-            <tr>
-                <td>Government Residual Profit</td>
+            <tr class="tr-alice">
+                <td>Government</td>
+                <td>Residual profit</td>
                 <td></td>
-                <td>₹ @Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentAddlProfit)</td>
+                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentAddlProfit)</td>
+                <td class="td-notes" >@($"Remaining amount (New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} )  - (other incentives)")</td>
             </tr>
 
         </tbody>
