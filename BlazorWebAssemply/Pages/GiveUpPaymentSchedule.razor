@@ -2,81 +2,81 @@
 
 
 <h3>GiveUpPaymentSchedule</h3>
-<table class="table reportTable">
+<table class="reportTable">
         <thead class="reportHead">
             <tr>
-                <th>Person</th>
-                <th>Description</th>
-                <th>Pay</th>
-                <th>Receive</th>
-                <th>Notes</th>
+                <th class="td-report" >Person</th>
+                <th class="td-report" >Description</th>
+                <th class="td-report" >Pay</th>
+                <th class="td-report" >Receive</th>
+                <th class="td-report" >Notes</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Bidder</td>
-                <td> New purchase price</td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderPay)</td>
-                <td></td>
+                <td class="td-report" >Bidder</td>
+                <td class="td-report" > New purchase price</td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderPay)</td>
+                <td class="td-report" ></td>
                 <td class="td-notes" >New Purchase price</td>
             </tr>
             <tr class="tr-alice">
-                <td>Bidder</td>
-                <td>Registration fees</td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderFees)</td>
-                <td></td>
+                <td class="td-report" >Bidder</td>
+                <td class="td-report" >Registration fees</td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderFees)</td>
+                <td class="td-report" ></td>
                 <td class="td-notes" >@($"(New Purchase price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)}) * (Stamp charge rate {LrrState.Configuration.StampChargePercentage} + Registraion rate {LrrState.Configuration.RegistrationChargePercentage})")</td>
             </tr>
 
             <tr>
-                <td>Provisional Buyer</td>
-                <td>Refund</td>
-                <td></td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerCapitalRefund)</td>
+                <td class="td-report" >Provisional Buyer</td>
+                <td class="td-report" >Refund</td>
+                <td class="td-report" ></td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerCapitalRefund)</td>
                 <td class="td-notes" >@($"Old Registration amount")</td>
             </tr>
             <tr class="tr-alice">
-                <td>Provisional Buyer</td>
-                <td>Fees refund</td>
-                <td></td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerFeesRefund)</td>
+                <td class="td-report" >Provisional Buyer</td>
+                <td class="td-report" >Fees refund</td>
+                <td class="td-report" ></td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerFeesRefund)</td>
                 <td class="td-notes" >@($"Registration fees previously paid by prov. buyer")</td>
             </tr>
 
             <tr>
-                <td>Provisional Buyer</td>
-                <td>Compensation</td>
-                <td></td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerIncentive)</td>
+                <td class="td-report" >Provisional Buyer</td>
+                <td class="td-report" >Compensation</td>
+                <td class="td-report" ></td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerIncentive)</td>
                 <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Prov. buyer incentive ratio {LrrState.Configuration.GiveUpProvBuyerIncentiveRatio})")</td>
             </tr>
 
             <tr class="tr-alice">
-                <td>Original seller</td>
-                <td>Additional Profit</td>
-                <td></td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.OriginalSellerProfit)</td>
+                <td class="td-report" >Original seller</td>
+                <td class="td-report" >Additional Profit</td>
+                <td class="td-report" ></td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.OriginalSellerProfit)</td>
                 <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Seller Incentive ratio {LrrState.Configuration.GiveUpSellerIncentiveRatio})")</td>
             </tr>
             <tr>
-                <td>Broker </td>
-                <td>Additional Brokerage</td>
-                <td></td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BrokerReceive)</td>
+                <td class="td-report" >Broker </td>
+                <td class="td-report" >Additional Brokerage</td>
+                <td class="td-report" ></td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BrokerReceive)</td>
                 <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Brokerage {LrrState.Configuration.Brokerage})")</td>
             </tr>
             <!--
             <tr>
-                <td>Government Extra Tax Income</td>
-                <td></td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentExtraTax)</td>
+                <td class="td-report" >Government Extra Tax Income</td>
+                <td class="td-report" ></td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentExtraTax)</td>
                 <td class="td-notes" >@($"")</td>
             </tr>-->
             <tr class="tr-alice">
-                <td>Government</td>
-                <td>Residual profit</td>
-                <td></td>
-                <td>₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentAddlProfit)</td>
+                <td class="td-report" >Government</td>
+                <td class="td-report" >Residual profit</td>
+                <td class="td-report" ></td>
+                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentAddlProfit)</td>
                 <td class="td-notes" >@($"Remaining amount (New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} )  - (other incentives)")</td>
             </tr>
 

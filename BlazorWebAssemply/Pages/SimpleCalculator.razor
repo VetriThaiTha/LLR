@@ -1,10 +1,65 @@
 ﻿@page "/simpleCalculator"
 
 
-<PageTitle>LRR Simple Calculator</PageTitle>
 
-<h3>SimpleCalculator</h3>
 
-@code {
+@inject Lrr.Shared.LrrState LrrState
 
+<PageTitle>Land Registration Reform Simple Calculator</PageTitle>
+
+<EditForm Model="@LrrState.InputData" OnValidSubmit="@HandleValidSubmit">
+
+<table style="width:100%" >
+    <tr>
+        <td style="width:40%" >
+            <RegistrationInput LrrState="LrrState" RefreshScreen="Refresh"   />
+        </td>
+        <td style="width:60%" >
+            <DisplayDetails LrrState="LrrState"   />
+        </td>
+    </tr>
+    
+        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.GiveUpToHighestBid)
+        {
+            <tr>
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <GiveUpPaymentSchedule LrrState="LrrState" />
+                </td>
+            </tr>
+        }
+        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.MatchHighestBid)
+        {
+            <tr>
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <MatchPaymentSchedule LrrState="LrrState" />
+                </td>
+            </tr>
+        }
+         
+</table>
+
+</EditForm>
+
+@code{
+        private void HandleValidSubmit()
+    {
+        
+
+    }
+
+    private void Refresh()
+    {
+        //LrrState.CalculateValues();
+        InvokeAsync(() =>
+                {
+
+                    StateHasChanged();
+                });
+    }
 }
