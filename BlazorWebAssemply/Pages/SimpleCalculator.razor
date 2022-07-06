@@ -7,7 +7,7 @@
 
 <PageTitle>Land Registration Reform Simple Calculator</PageTitle>
 
-<EditForm Model="@LrrState.InputData" OnValidSubmit="@HandleValidSubmit">
+<EditForm Model="@LrrState.InputData" >
 
 <table style="width:100%" >
     <tr>
@@ -41,21 +41,22 @@
                 </td>
             </tr>
         }
+
+        <tr>
+            <td colspan="2"><SimpleConfiguration LrrState="LrrState" RefreshScreen="Refresh" ></SimpleConfiguration></td>
+        </tr>
          
 </table>
+<ValidationSummary />
+
 
 </EditForm>
 
 @code{
-        private void HandleValidSubmit()
-    {
-        
-
-    }
 
     private void Refresh()
     {
-        //LrrState.CalculateValues();
+        LrrState.CalculateValues();
         InvokeAsync(() =>
                 {
 

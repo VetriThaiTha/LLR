@@ -12,13 +12,13 @@ namespace Lrr.Shared
         {
             Calculator = new SimpleCalculator();
             Configuration = new SimpleConfiguration();
-            InputData = new InputData(CalculateValues);
+            InputData = new InputData();
             AuctionDetails = new AuctionDetails();
             GiveUpPaymentSchedule = new GiveUpPaymentSchedule();
             MatchPaymentSchedule = new MatchPaymentSchedule();
         }
         public ICalculator Calculator { get; set; }
-        public IConfiguration Configuration { get; set; }
+        public SimpleConfiguration Configuration { get; set; }
         public IInputData InputData { get; set; }
 
         public IAuctionDetails AuctionDetails { get; set; }

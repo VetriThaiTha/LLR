@@ -1,0 +1,41 @@
+﻿@using System.ComponentModel.DataAnnotations
+@using Lrr.Shared;
+
+<h3>SimpleConfiguration</h3>
+
+<table class="reportTable">
+        <tbody>
+            <tr>
+                <td class="td-report" >Stamp Charge Percentage:</td>
+                <td class="td-report" ><InputNumber style="width:6ch" id="StampChargePercentage" @bind-Value="StampChargePercentage"   />%</td>
+            </tr>
+        </tbody>
+</table>
+@code {
+    [Parameter, EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
+    [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
+
+    //using System.ComponentModel.DataAnnotations;
+
+    
+    public double StampChargePercentage
+    {
+        get { return LrrState.InputData.WhiteBlackRatio; }
+        set
+        {
+            var percentage = value / 100.0;
+            if (LrrState.Configuration.StampChargePercentage != percentage) {
+                LrrState.Configuration.StampChargePercentage = percentage;
+                ReCalculateValues();
+            }
+        }
+    }
+
+    private void ReCalculateValues()
+    {
+        
+        if (RefreshScreen != null)
+            RefreshScreen();
+    }
+
+}
