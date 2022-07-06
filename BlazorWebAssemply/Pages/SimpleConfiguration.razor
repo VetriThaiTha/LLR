@@ -1,0 +1,138 @@
+﻿@using Lrr.Models;
+@using Lrr.Shared;
+
+<br />
+<h3>Edit configuration</h3>
+
+<EditForm Model="@_model" >
+<table class="reportTable">
+        <tbody class="reportTable" >
+            <tr class="td-report">
+                <td class="td-report" >AuctionDuration stamp charge percentage:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="StampChargePercentage" @bind-Value="@_model.StampChargePercentage"   />%
+                <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>
+                </td>
+            </tr>
+            <tr class="tr-alice">
+                <td class="td-report" >Registration fee percentage:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="RegistrationChargePercentage" @bind-Value="@_model.RegistrationChargePercentage"   />%
+                <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>    
+                </td>
+            </tr>
+            <tr>
+                <td class="td-report" >Auction duration (in months):</td>
+                <td class="td-report" ><InputNumber style="width:6ch" id="AuctionDuration" @bind-Value="@_model.AuctionDuration"   />
+                    <ValidationMessage For="@(()=>_model.AuctionDuration)"></ValidationMessage>
+                </td>
+            </tr>
+            <tr class="tr-alice">
+                <td class="td-report" >Auction starting value multiple:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="StartingValueMultiple" @bind-Value="@_model.StartingValueMultiple"   /></td>
+            </tr>
+            <tr>
+                <td class="td-report" >Auction Step Value Multiple:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="StepValueMultiple" @bind-Value="@_model.StepValueMultiple"   /></td>
+            </tr>
+
+            <tr class="tr-alice">
+                <td class="td-report" >GiveUp ProvBuyer Incentive Ratio:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio"   /></td>
+            </tr>
+            <tr>
+                <td class="td-report" >GiveUp Seller Incentive Ratio:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"   /></td>
+            </tr>
+            <tr class="tr-alice">
+                <td class="td-report" >Brokerage:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="Brokerage" @bind-Value="@_model.Brokerage"   /></td>
+            </tr>
+
+            <tr>
+                <td class="td-report" >Match Seller Incentive Ratio:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="MatchSellerIncentiveRatio" @bind-Value="@_model.MatchSellerIncentiveRatio"   /></td>
+            </tr>
+            <tr class="tr-alice">
+                <td class="td-report" >MatchBidderIncentiveRatio:</td>
+                <td class="td-report" ><InputNumber style="width:10ch" id="MatchBidderIncentiveRatio" @bind-Value="@_model.MatchBidderIncentiveRatio"   /></td>
+            </tr>
+        </tbody>
+</table>
+<button class="btn btn-primary"  @onclick="SaveConfig">Save Config</button>
+<button class="btn btn-primary" type="reset" @onclick="CancelEditConfig">Cancel</button>
+</EditForm>
+@code {
+    [Parameter, EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
+    [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
+
+    private SimpleConfigurationModel _model = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        InitValues();
+        RefreshScreen();
+    }
+
+    private void SaveConfig()
+    {
+        CopyConfig();
+        LrrState.EditConfig = false;
+        ReCalculateValues();
+    }
+
+    private void CancelEditConfig()
+    {
+        InitValues();
+        LrrState.EditConfig = false;
+        ReCalculateValues();
+    }
+
+    private void ReCalculateValues()
+    {
+        this.StateHasChanged();
+        LrrState.CalculateValues();
+        if (RefreshScreen != null)
+            RefreshScreen();
+    }
+
+    private void CopyConfig()
+    {
+        LrrState.Configuration.StampChargePercentage = _model.StampChargePercentage;
+        LrrState.Configuration.RegistrationChargePercentage = _model.RegistrationChargePercentage;
+        
+        LrrState.Configuration.AuctionDuration = _model.AuctionDuration;
+        LrrState.Configuration.StartingValueMultiple = _model.StartingValueMultiple;
+        LrrState.Configuration.StepValueMultiple = _model.StepValueMultiple;
+
+        LrrState.Configuration.GiveUpProvBuyerIncentiveRatio = _model.GiveUpProvBuyerIncentiveRatio;
+        LrrState.Configuration.GiveUpSellerIncentiveRatio = _model.GiveUpSellerIncentiveRatio;
+        LrrState.Configuration.Brokerage = _model.Brokerage;
+
+        LrrState.Configuration.MatchSellerIncentiveRatio = _model.MatchSellerIncentiveRatio;
+        LrrState.Configuration.MatchBidderIncentiveRatio = _model.MatchBidderIncentiveRatio;
+
+
+
+    }
+
+    private void InitValues()
+    {
+        _model.StampChargePercentage = LrrState.Configuration.StampChargePercentage;
+        _model.RegistrationChargePercentage = LrrState.Configuration.RegistrationChargePercentage;
+        
+        _model.AuctionDuration = LrrState.Configuration.AuctionDuration;
+        _model.StartingValueMultiple = LrrState.Configuration.StartingValueMultiple;
+        _model.StepValueMultiple = LrrState.Configuration.StepValueMultiple;
+
+        _model.GiveUpProvBuyerIncentiveRatio = LrrState.Configuration.GiveUpProvBuyerIncentiveRatio;
+        _model.GiveUpSellerIncentiveRatio = LrrState.Configuration.GiveUpSellerIncentiveRatio;
+        _model.Brokerage = LrrState.Configuration.Brokerage;
+
+        _model.MatchSellerIncentiveRatio = LrrState.Configuration.MatchSellerIncentiveRatio;
+        _model.MatchBidderIncentiveRatio = LrrState.Configuration.MatchBidderIncentiveRatio;
+
+
+
+    }
+
+}

@@ -10,9 +10,9 @@ namespace Lrr.Shared
     {
         protected SimpleConfiguration configuration;
 
-        public SimpleCalculator()
+        public SimpleCalculator(SimpleConfiguration simpleConfiguration)
         {
-            configuration = new SimpleConfiguration();
+            configuration = simpleConfiguration;
         }
 
         public void UpdateAuctionDetails(IInputData inputData, IAuctionDetails auctionDetails)

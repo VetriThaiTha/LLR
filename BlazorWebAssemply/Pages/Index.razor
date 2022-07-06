@@ -1,61 +1,65 @@
 ﻿@page "/"
+@using Lrr.Models;
 @inject Lrr.Shared.LrrState LrrState
 
-<PageTitle>Simple Calculator</PageTitle>
 
-<EditForm Model="@LrrState.InputData" OnValidSubmit="@HandleValidSubmit">
+<PageTitle>Index Test page</PageTitle>
 
-<table style="width:100%" >
-    <tr>
-        <td style="width:40%" >
-            <RegistrationInput LrrState="LrrState" RefreshScreen="Refresh"   />
-        </td>
-        <td style="width:60%" >
-            <DisplayDetails LrrState="LrrState"   />
-        </td>
-    </tr>
-    
-        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.GiveUpToHighestBid)
-        {
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <GiveUpPaymentSchedule LrrState="LrrState" />
-                </td>
-            </tr>
-        }
-        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.MatchHighestBid)
-        {
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <MatchPaymentSchedule LrrState="LrrState" />
-                </td>
-            </tr>
-        }
-         
-</table>
+<h3>Test page</h3>
 
-</EditForm>
+<EditForm Model="@_model" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <table class="reportTable">
 
-@code{
-        private void HandleValidSubmit()
-    {
+        <tr>
+            <td>
+                <InputNumber style="width:6ch" id="HighestBidValue" @bind-Value="_model.TemperatureC"  />%
+        <ValidationMessage For="@(()=>_model.TemperatureC)"></ValidationMessage>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ₹<InputNumber style="width:13ch" id="PurchaseValue" @bind-Value="_model.PurchaseValue"   />
+       <ValidationMessage For="@(()=>_model.PurchaseValue)"></ValidationMessage>
+            </td>
+        </tr>
+    </table>
+
+    <button type="submit" class="btn btn-primary" @onclick="Refresh">Update Values</button>
+
+    <button type="reset" class="btn btn-primary">Reset</button>
         
 
+
+</EditForm>
+<h3>Test page</h3>
+@code{
+    private RegistrationInputModel _model = new ();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _model.updateState(LrrState, Refresh);
     }
 
     private void Refresh()
     {
-        //LrrState.CalculateValues();
         InvokeAsync(() =>
                 {
 
                     StateHasChanged();
                 });
     }
+
+        private void HandleValidSubmit()
+    {
+        InvokeAsync(() =>
+                {
+
+                    StateHasChanged();
+                });
+
+    }
+
+    
 }
