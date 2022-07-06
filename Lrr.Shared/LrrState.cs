@@ -10,8 +10,9 @@ namespace Lrr.Shared
     {
         public LrrState()
         {
-            Calculator = new SimpleCalculator();
-            Configuration = new SimpleConfiguration();
+            var config = new SimpleConfiguration();
+            Calculator = new SimpleCalculator(config);
+            Configuration = config;
             InputData = new InputData();
             AuctionDetails = new AuctionDetails();
             GiveUpPaymentSchedule = new GiveUpPaymentSchedule();
@@ -24,7 +25,7 @@ namespace Lrr.Shared
         public IAuctionDetails AuctionDetails { get; set; }
         public IGiveUpPaymentSchedule GiveUpPaymentSchedule { get; set;}
         public IMatchPaymentSchedule MatchPaymentSchedule { get; set; }
-
+        public bool EditConfig { get; set; } = false;
         public void CalculateValues()
         {
             Calculator.UpdateAuctionDetails(InputData, AuctionDetails);
