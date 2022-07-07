@@ -13,6 +13,7 @@
                 </td>
                 <td class="td-report" >
                     ₹<InputNumber class="formatinput" style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
+                    <ValidationMessage For="@(()=>PurchaseValue)"></ValidationMessage>
                 </td>
             </tr>
             <tr class="tr-alice">
@@ -20,7 +21,8 @@
                     White / Black ratio:
                 </td>
                 <td class="td-report" >
-                    <InputNumber class="formatinput" style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   /> / @(100 - LrrState.InputData.WhiteBlackRatio)
+                    <InputNumber class="formatinput" style="width:6ch" id="WhiteBlackRatio" @bind-Value="WhiteBlackRatio"   /> / @(100 - LrrState.InputData.WhiteBlackRatio)
+                    <ValidationMessage For="@(()=>WhiteBlackRatio)"></ValidationMessage>
                 </td>
             </tr>
 
@@ -30,11 +32,12 @@
                 </td>
                 <td class="td-report" >
                     <InputDate class="formatinput" @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
+                    <ValidationMessage For="@(()=>RegistrationDate)"></ValidationMessage>
                 </td>
             </tr>
         </tbody>
 </table>
-
+<ValidationSummary />
 <br />
 
 <table class="reportTable">

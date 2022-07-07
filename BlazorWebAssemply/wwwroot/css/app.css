@@ -113,3 +113,7 @@ a, .btn-link {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+.error_msg {
+    color: red;
+}
