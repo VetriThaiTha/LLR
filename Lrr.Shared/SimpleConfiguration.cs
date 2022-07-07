@@ -13,7 +13,7 @@ namespace Lrr.Shared
             StampChargePercentage = 0.07;
             RegistrationChargePercentage = 0.01;
             AuctionDuration = 3;
-            StartingValueMultiple = 1.25;
+            StartingValueMultiple = 1.5;
             StepValueMultiple = 0.02;
 
             /* Give up Ratios*/
