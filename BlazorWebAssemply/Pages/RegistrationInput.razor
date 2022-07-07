@@ -1,4 +1,4 @@
-﻿
+﻿@using Lrr.Shared;
 
 <table class="reportTable">
         <thead class="reportHead">
@@ -8,28 +8,28 @@
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td class="td-report" >
                     Purchase Value:
                 </td>
-                <td>
+                <td class="td-report" >
                     ₹<InputNumber class="formatinput" style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
                 </td>
             </tr>
             <tr class="tr-alice">
-                <td>
+                <td class="td-report" >
                     White / Black Ratio:
                 </td>
-                <td>
-                    <InputNumber class="formatinput" style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />%
+                <td class="td-report" >
+                    <InputNumber class="formatinput" style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   /> / @(100 - LrrState.InputData.WhiteBlackRatio)
                     <span style="font-size: 10px;">between 1 and 100</span>
                 </td>
             </tr>
 
             <tr>
-                <td>
+                <td class="td-report" >
                     Registration Date:
                 </td>
-                <td>
+                <td class="td-report" >
                     <InputDate class="formatinput" @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
                 </td>
             </tr>
@@ -46,22 +46,22 @@
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td class="td-report" >
                     Registration Amount:
                 </td>
-                <td>
+                <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtWhiteValue
                 </td>
-                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (white black ratio ${LrrState.InputData.WhiteBlackRatio} )/ 100.0")</td>
+                <td class="td-notes" >@($"(purchase value ₹{ AuctionDetails.FmtIntVal(LrrState.InputData.PurchaseValue)} ) * (white black ratio { LrrState.InputData.WhiteBlackRatio} ) / 100.0")</td>
             </tr>
             <tr class="tr-alice">
-                <td>
+                <td class="td-report" >
                     Cash Payment (Black):
                 </td>
-                <td>
+                <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtBlackValue
                 </td>
-                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (100.0 - white black ratio ${LrrState.InputData.WhiteBlackRatio} / 100.0 )")</td>
+                <td class="td-notes" >@($"(purchase value ₹{AuctionDetails.FmtIntVal(LrrState.InputData.PurchaseValue)} ) * ((100.0 - white black ratio {LrrState.InputData.WhiteBlackRatio}) / 100.0 )")</td>
             </tr>
         </tbody>
 </table>
@@ -75,32 +75,32 @@
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td class="td-report" >
                     Auction End Date:
                 </td>
-                <td>
+                <td class="td-report" >
                     @LrrState.AuctionDetails.EndDate.ToString("dd/MMM/yyyy")
                 </td>
                 <td class="td-notes" >@($"Registration date + (auction duration {LrrState.Configuration.AuctionDuration} months) ")</td>
             </tr>
             <tr class="tr-alice">
-                <td>
+                <td class="td-report" >
                     Auction starting value:
                 </td>
-                <td>
+                <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtStartingValue
                 </td>
-                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (Auction starting value multiple ${LrrState.Configuration.StartingValueMultiple})")</td>
+                <td class="td-notes" >@($"(purchase value ₹{AuctionDetails.FmtIntVal(LrrState.InputData.PurchaseValue)} ) * (Auction starting value multiple {LrrState.Configuration.StartingValueMultiple})")</td>
             </tr>
 
             <tr>
-                <td>
+                <td class="td-report" >
                     Auction step value:
                 </td>
-                <td>
+                <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtStepValue
                 </td>
-                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (Auction step value multiple ${LrrState.Configuration.StepValueMultiple})")</td>
+                <td class="td-notes" >@($"(purchase value ₹{AuctionDetails.FmtIntVal(LrrState.InputData.PurchaseValue)} ) * (Auction step value multiple {LrrState.Configuration.StepValueMultiple})")</td>
             </tr>
         </tbody>
 </table>
@@ -114,10 +114,10 @@
         </thead>
         <tbody>
             <tr>
-                <td>
+                <td class="td-report" >
                     Highest Bid Value:
                 </td>
-                <td>
+                <td class="td-report" >
                     <select class="formatinput" @bind="HighestBidIndex"  >
                         <option value=-1 >-- Select --</option>
                         @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
@@ -128,10 +128,10 @@
                 </td>
             </tr>
             <tr class="tr-alice">
-                <td>
+                <td class="td-report" >
                     Provisional buyer's decision:
                 </td>
-                <td>
+                <td class="td-report" >
                     <select class="formatinput" @bind="Decision"  >
                         <option value=@Lrr.Shared.DecisionEnum.None > None </option>
                         @if (LrrState.InputData.HighestBidIndex > -1)
