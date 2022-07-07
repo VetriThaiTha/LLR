@@ -25,7 +25,7 @@
                 <td class="td-report" >Registration fees</td>
                 <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BidderFees)</td>
                 <td class="td-report" ></td>
-                <td class="td-notes" >@($"(New Purchase price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)}) * (Stamp charge rate {LrrState.Configuration.StampChargePercentage} + Registraion rate {LrrState.Configuration.RegistrationChargePercentage})")</td>
+                <td class="td-notes" >@($"(New Purchase price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)}) * (Stamp charge rate {LrrState.Configuration.StampChargePercentage} + Registraion rate {LrrState.Configuration.RegistrationChargePercentage})")</td>
             </tr>
 
             <tr>
@@ -48,7 +48,7 @@
                 <td class="td-report" >Compensation</td>
                 <td class="td-report" ></td>
                 <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.ProvBuyerIncentive)</td>
-                <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Prov. buyer incentive ratio {LrrState.Configuration.GiveUpProvBuyerIncentiveRatio})")</td>
+                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Prov. buyer incentive ratio {LrrState.Configuration.GiveUpProvBuyerIncentiveRatio})")</td>
             </tr>
 
             <tr class="tr-alice">
@@ -56,14 +56,14 @@
                 <td class="td-report" >Additional Profit</td>
                 <td class="td-report" ></td>
                 <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.OriginalSellerProfit)</td>
-                <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Seller Incentive ratio {LrrState.Configuration.GiveUpSellerIncentiveRatio})")</td>
+                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Seller Incentive ratio {LrrState.Configuration.GiveUpSellerIncentiveRatio})")</td>
             </tr>
             <tr>
                 <td class="td-report" >Broker </td>
                 <td class="td-report" >Additional Brokerage</td>
                 <td class="td-report" ></td>
                 <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.BrokerReceive)</td>
-                <td class="td-notes" >@($"(New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} ) * (Brokerage {LrrState.Configuration.Brokerage})")</td>
+                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Brokerage {LrrState.Configuration.Brokerage})")</td>
             </tr>
             <!--
             <tr>
@@ -77,7 +77,7 @@
                 <td class="td-report" >Residual profit</td>
                 <td class="td-report" ></td>
                 <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.GiveUpPaymentSchedule.GovernmentAddlProfit)</td>
-                <td class="td-notes" >@($"Remaining amount (New price {Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount {LrrState.AuctionDetails.FmtWhiteValue} )  - (other incentives)")</td>
+                <td class="td-notes" >@($"Remaining amount (New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} )  - (other incentives)")</td>
             </tr>
 
         </tbody>
