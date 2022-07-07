@@ -12,7 +12,7 @@
                     Purchase Value:
                 </td>
                 <td>
-                    ₹<InputNumber style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
+                    ₹<InputNumber class="formatinput" style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
                 </td>
                 <td class="td-notes" >@($"")</td>
             </tr>
@@ -21,7 +21,7 @@
                     White / Black Ratio:
                 </td>
                 <td>
-                    <InputNumber style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />%
+                    <InputNumber class="formatinput" style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />%
                 </td>
                 <td class="td-notes" >@($"between 1 and 100")</td>
             </tr>
@@ -31,7 +31,7 @@
                     Registration Date:
                 </td>
                 <td>
-                    <InputDate  @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
+                    <InputDate class="formatinput" @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
                 </td>
                 <td class="td-notes" >@($"")</td>
             </tr>
@@ -53,7 +53,7 @@
                     Highest Bid Value:
                 </td>
                 <td>
-                    <select @bind="HighestBidIndex"  >
+                    <select class="formatinput" @bind="HighestBidIndex"  >
                         <option value=-1 >-- Select --</option>
                         @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
                        {
@@ -68,7 +68,7 @@
                     Provisional buyer's decision:
                 </td>
                 <td>
-                    <select @bind="Decision"  >
+                    <select class="formatinput" @bind="Decision"  >
                         <option value=@Lrr.Shared.DecisionEnum.None > None </option>
                         @if (LrrState.InputData.HighestBidIndex > -1)
                             {
