@@ -29,7 +29,7 @@
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
-            <tr>
+            <tr class="td-report">
                 <td class="td-report" >Auction duration (in months):</td>
                 <td class="td-report" ><InputNumber class="formatinput" style="width:6ch" id="AuctionDuration" @bind-Value="@_model.AuctionDuration"   />
                     <ValidationMessage For="@(()=>_model.AuctionDuration)"></ValidationMessage>
@@ -44,7 +44,7 @@
                 </td>
                 <td class="td-notes" >@($"between 1.0 to 10.0")</td>
             </tr>
-            <tr>
+            <tr class="td-report">
                 <td class="td-report" >Auction step value multiple:</td>
                 <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="StepValueMultiple" @bind-Value="@_model.StepValueMultiple"   />
                 <ValidationMessage For="@(()=>_model.StepValueMultiple)"></ValidationMessage>
@@ -53,30 +53,31 @@
             </tr>
 
             <tr class="tr-alice">
-                <td class="td-report" >Give-up Prov buyer incentive multiple:</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio"   />
-                <ValidationMessage For="@(()=>_model.GiveUpProvBuyerIncentiveRatio)"></ValidationMessage>
-                </td>
-                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
-            </tr>
-            <tr>
-                <td class="td-report" >Give-up Seller incentive multiple:</td>
+                <td class="td-report" >Seller's incentive multiple in give-up scenario:</td>
                 <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"   />
                 <ValidationMessage For="@(()=>_model.GiveUpSellerIncentiveRatio)"></ValidationMessage>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
-            <tr>
-                <td class="td-report" >Match Seller Incentive multiple:</td>
+            <tr class="td-report">
+                <td class="td-report" >Provisional buyer's incentive multiple in give-up scenario:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio"   />
+                <ValidationMessage For="@(()=>_model.GiveUpProvBuyerIncentiveRatio)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+            </tr>
+
+            <tr class="tr-alice">
+                <td class="td-report" >Seller's incentive multiple in match scenario:</td>
                 <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchSellerIncentiveRatio" @bind-Value="@_model.MatchSellerIncentiveRatio"   />
                 <ValidationMessage For="@(()=>_model.MatchSellerIncentiveRatio)"></ValidationMessage>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
-            <tr class="tr-alice">
-                <td class="td-report" >Match Bidder incentive multiple:</td>
+            <tr class="td-report">
+                <td class="td-report" >Bidder incentive multiple in match scenario:</td>
                 <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchBidderIncentiveRatio" @bind-Value="@_model.MatchBidderIncentiveRatio"   />
                 <ValidationMessage For="@(()=>_model.MatchBidderIncentiveRatio)"></ValidationMessage>
                 </td>
