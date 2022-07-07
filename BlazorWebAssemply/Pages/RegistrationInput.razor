@@ -3,7 +3,7 @@
 <table class="reportTable">
         <thead class="reportHead">
             <tr  >
-                <th class="td-report" colspan="3" > Registration input</th>
+                <th class="td-report" colspan="2" > Registration input</th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +14,6 @@
                 <td>
                     ₹<InputNumber class="formatinput" style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
                 </td>
-                <td class="td-notes" >@($"")</td>
             </tr>
             <tr class="tr-alice">
                 <td>
@@ -22,8 +21,8 @@
                 </td>
                 <td>
                     <InputNumber class="formatinput" style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />%
+                    <span style="font-size: 10px;">between 1 and 100</span>
                 </td>
-                <td class="td-notes" >@($"between 1 and 100")</td>
             </tr>
 
             <tr>
@@ -33,7 +32,6 @@
                 <td>
                     <InputDate class="formatinput" @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
                 </td>
-                <td class="td-notes" >@($"")</td>
             </tr>
         </tbody>
 </table>
@@ -61,7 +59,6 @@
                        }
                     </select>
                 </td>
-                <td class="td-notes" >@($"Pick the bid value.")</td>
             </tr>
             <tr class="tr-alice">
                 <td>
@@ -77,7 +74,6 @@
                             }
                     </select>
                 </td>
-                <td class="td-notes" >@($"pick one")</td>
             </tr>
         </tbody>
 </table>
