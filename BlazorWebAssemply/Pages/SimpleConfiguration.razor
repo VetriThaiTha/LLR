@@ -2,59 +2,95 @@
 @using Lrr.Shared;
 
 <br />
-<h3>Edit configuration</h3>
 
 <EditForm Model="@_model" >
 <table class="reportTable">
+        <thead class="reportHead">
+            <tr  >
+                <th class="td-report" colspan="3" >Edit configuration</th>
+            </tr>
+        </thead>
+
         <tbody class="reportTable" >
             <tr class="td-report">
-                <td class="td-report" >AuctionDuration stamp charge percentage:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="StampChargePercentage" @bind-Value="@_model.StampChargePercentage"   />%
-                <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>
+                <td class="td-report" >Stamp charge multiple:</td>
+                <td class="td-report" >
+                    <InputNumber class="formatinput" style="width:10ch" id="StampChargePercentage" @bind-Value="@_model.StampChargePercentage"   />
+                    <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>
                 </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
             <tr class="tr-alice">
-                <td class="td-report" >Registration fee percentage:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="RegistrationChargePercentage" @bind-Value="@_model.RegistrationChargePercentage"   />%
-                <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>    
+                <td class="td-report" >Registration fee multiple:</td>
+                <td class="td-report" >
+                    <InputNumber class="formatinput" style="width:10ch" id="RegistrationChargePercentage" @bind-Value="@_model.RegistrationChargePercentage"   />
+                    <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>    
                 </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
+
             <tr>
                 <td class="td-report" >Auction duration (in months):</td>
-                <td class="td-report" ><InputNumber style="width:6ch" id="AuctionDuration" @bind-Value="@_model.AuctionDuration"   />
+                <td class="td-report" ><InputNumber class="formatinput" style="width:6ch" id="AuctionDuration" @bind-Value="@_model.AuctionDuration"   />
                     <ValidationMessage For="@(()=>_model.AuctionDuration)"></ValidationMessage>
                 </td>
+                <td class="td-notes" >@($"between 1 to 12")</td>
             </tr>
             <tr class="tr-alice">
                 <td class="td-report" >Auction starting value multiple:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="StartingValueMultiple" @bind-Value="@_model.StartingValueMultiple"   /></td>
+                <td class="td-report" >
+                    <InputNumber class="formatinput" style="width:10ch" id="StartingValueMultiple" @bind-Value="@_model.StartingValueMultiple"   />
+                    <ValidationMessage For="@(()=>_model.StartingValueMultiple)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 1.0 to 10.0")</td>
             </tr>
             <tr>
-                <td class="td-report" >Auction Step Value Multiple:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="StepValueMultiple" @bind-Value="@_model.StepValueMultiple"   /></td>
+                <td class="td-report" >Auction step value multiple:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="StepValueMultiple" @bind-Value="@_model.StepValueMultiple"   />
+                <ValidationMessage For="@(()=>_model.StepValueMultiple)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 0.01 to 1.0")</td>
             </tr>
 
             <tr class="tr-alice">
-                <td class="td-report" >GiveUp ProvBuyer Incentive Ratio:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio"   /></td>
+                <td class="td-report" >Give-up Prov buyer incentive multiple:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio"   />
+                <ValidationMessage For="@(()=>_model.GiveUpProvBuyerIncentiveRatio)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
             <tr>
-                <td class="td-report" >GiveUp Seller Incentive Ratio:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"   /></td>
+                <td class="td-report" >Give-up Seller incentive multiple:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"   />
+                <ValidationMessage For="@(()=>_model.GiveUpSellerIncentiveRatio)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
+
+            <tr>
+                <td class="td-report" >Match Seller Incentive multiple:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchSellerIncentiveRatio" @bind-Value="@_model.MatchSellerIncentiveRatio"   />
+                <ValidationMessage For="@(()=>_model.MatchSellerIncentiveRatio)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+            </tr>
+
+            <tr class="tr-alice">
+                <td class="td-report" >Match Bidder incentive multiple:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchBidderIncentiveRatio" @bind-Value="@_model.MatchBidderIncentiveRatio"   />
+                <ValidationMessage For="@(()=>_model.MatchBidderIncentiveRatio)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+            </tr>
+
             <tr class="tr-alice">
                 <td class="td-report" >Brokerage:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="Brokerage" @bind-Value="@_model.Brokerage"   /></td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="Brokerage" @bind-Value="@_model.Brokerage"   />
+                <ValidationMessage For="@(()=>_model.Brokerage)"></ValidationMessage>
+                </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
-            <tr>
-                <td class="td-report" >Match Seller Incentive Ratio:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="MatchSellerIncentiveRatio" @bind-Value="@_model.MatchSellerIncentiveRatio"   /></td>
-            </tr>
-            <tr class="tr-alice">
-                <td class="td-report" >MatchBidderIncentiveRatio:</td>
-                <td class="td-report" ><InputNumber style="width:10ch" id="MatchBidderIncentiveRatio" @bind-Value="@_model.MatchBidderIncentiveRatio"   /></td>
-            </tr>
         </tbody>
 </table>
 <button class="btn btn-primary"  @onclick="SaveConfig">Save Config</button>
