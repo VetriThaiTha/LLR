@@ -1,62 +1,91 @@
-﻿<h3>RegistrationInput</h3>
+﻿
 
-<div class="form-field">
-    <label>Purchase Value:</label>
-    <div>
-       ₹<InputNumber style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
-    </div>
-</div>
+<table class="reportTable">
+        <thead class="reportHead">
+            <tr  >
+                <th class="td-report" colspan="3" > Registration input</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Purchase Value:
+                </td>
+                <td>
+                    ₹<InputNumber style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
+                </td>
+                <td class="td-notes" >@($"")</td>
+            </tr>
+            <tr class="tr-alice">
+                <td>
+                    White / Black Ratio:
+                </td>
+                <td>
+                    <InputNumber style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />%
+                </td>
+                <td class="td-notes" >@($"between 1 and 100")</td>
+            </tr>
 
-<div class="form-field">
-    <label>White / Black Ratio:</label>
-    <div>
-        <InputNumber style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   />%
-    </div>
-</div>
+            <tr>
+                <td>
+                    Registration Date:
+                </td>
+                <td>
+                    <InputDate  @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
+                </td>
+                <td class="td-notes" >@($"")</td>
+            </tr>
+        </tbody>
+</table>
 
-<div class="form-field">
-    <label>Registration Date:</label>
-    <div>
-        <InputDate  @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
-    </div>
-</div>
-
-<div class="form-field">
-    <label>Highest Bid Value:</label>
-    <div>
-        <select @bind="HighestBidIndex"  >
-            <option value=-1 >-- Select --</option>
-            @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
-           {
-               <option value=@item.Key >@item.Value</option>
-           }
-        </select>
-
-    </div>
-</div>
-<div class="form-field">
-    <label>Provisional buyer's decision:</label>
-<!--<div>-->    
-        <select @bind="Decision"  >
-
-            <option value=@Lrr.Shared.DecisionEnum.None > None </option>
-            @if (LrrState.InputData.HighestBidIndex > -1)
-                {
-                    <option value=@Lrr.Shared.DecisionEnum.MatchHighestBid  > Match highest Bid</option>
-                    <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > GiveUp to highest Bid</option>
-                }
-        </select>
-
-<!-- </div>-->    
-</div>
-<!--
 <br />
-<button class="btn btn-primary" @onclick="ReCalculateValues">Update Values</button>
--->
+
+
+<table class="reportTable">
+        <thead class="reportHead">
+            <tr  >
+                <th class="td-report" colspan="3" > Auction decisions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Highest Bid Value:
+                </td>
+                <td>
+                    <select @bind="HighestBidIndex"  >
+                        <option value=-1 >-- Select --</option>
+                        @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
+                       {
+                           <option value=@item.Key >@item.Value</option>
+                       }
+                    </select>
+                </td>
+                <td class="td-notes" >@($"Pick the bid value.")</td>
+            </tr>
+            <tr class="tr-alice">
+                <td>
+                    Provisional buyer's decision:
+                </td>
+                <td>
+                    <select @bind="Decision"  >
+                        <option value=@Lrr.Shared.DecisionEnum.None > None </option>
+                        @if (LrrState.InputData.HighestBidIndex > -1)
+                            {
+                                <option value=@Lrr.Shared.DecisionEnum.MatchHighestBid  > Match highest Bid</option>
+                                <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > GiveUp to highest Bid</option>
+                            }
+                    </select>
+                </td>
+                <td class="td-notes" >@($"pick one")</td>
+            </tr>
+        </tbody>
+</table>
+
 @code {
 
 
-    [Parameter] public Lrr.Shared.LrrState LrrState { get; set; }
+    [Parameter,EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
 
     [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
 
