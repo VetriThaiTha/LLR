@@ -8,19 +8,30 @@
 
         private Dictionary<string, string> _errorMesages = new();
         public bool hasErrorMesages { get { return _errorMesages.Count() > 0; } }
-        
-        [Required] public double StampChargePercentage { get; set; }
-        [Required] public double RegistrationChargePercentage { get; set; }
-        [Required] public int AuctionDuration { get; set; }
-        [Required] public double StartingValueMultiple { get; set; }
-        [Required] public double StepValueMultiple { get; set; }
 
-        [Required] public double GiveUpProvBuyerIncentiveRatio { get; set; }
-        [Required] public double GiveUpSellerIncentiveRatio { get; set; }
-        [Required] public double Brokerage { get; set; }
+        private double _stampChargePercentage;
+        [Required] public double StampChargePercentage { get => _stampChargePercentage; set { _stampChargePercentage = value; Validate(); } }
+        private double _RegistrationChargePercentage;
+        [Required] public double RegistrationChargePercentage { get => _RegistrationChargePercentage; set { _RegistrationChargePercentage = value; Validate(); } }
+        private int _AuctionDuration;
+        [Required] public int AuctionDuration { get => _AuctionDuration; set { _AuctionDuration = value; Validate(); } }
+        private double _StartingValueMultiple;
+        [Required] public double StartingValueMultiple { get => _StartingValueMultiple; set { _StartingValueMultiple = value; Validate(); } }
+        private double _StepValueMultiple;
+        [Required] public double StepValueMultiple { get => _StepValueMultiple; set { _StepValueMultiple = value; Validate(); } }
+        private double _GiveUpProvBuyerIncentiveRatio;
 
-        [Required] public double MatchSellerIncentiveRatio { get; set; }
-        [Required] public double MatchBidderIncentiveRatio { get; set; }
+        [Required] public double GiveUpProvBuyerIncentiveRatio { get => _GiveUpProvBuyerIncentiveRatio; set { _GiveUpProvBuyerIncentiveRatio = value; Validate(); } }
+        private double _GiveUpSellerIncentiveRatio;
+        [Required] public double GiveUpSellerIncentiveRatio { get => _GiveUpSellerIncentiveRatio; set { _GiveUpSellerIncentiveRatio = value; Validate(); } }
+        private double _Brokerage;
+        [Required] public double Brokerage { get => _Brokerage; set { _Brokerage = value; Validate(); } }
+        private double _MatchSellerIncentiveRatio;
+
+        [Required] public double MatchSellerIncentiveRatio { get => _MatchSellerIncentiveRatio; set { _MatchSellerIncentiveRatio = value; Validate(); } }
+        private double _MatchBidderIncentiveRatio;
+
+        [Required] public double MatchBidderIncentiveRatio { get => _MatchBidderIncentiveRatio; set { _MatchBidderIncentiveRatio = value; Validate(); } }
 
         public string GetErrorMessage(string property)
         {
