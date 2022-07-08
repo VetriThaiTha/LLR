@@ -172,12 +172,16 @@
 
             if (PurchaseValue < lakh)
                 return string.Empty;
+            var cVal = PurchaseValue / crore;
+            var lVal = (PurchaseValue / lakh) % 100;
 
-            
-            if (PurchaseValue >= crore)
-                return $"{PurchaseValue / crore} crore(s).";
+            var rtnVal = $"{lVal} lakh(s).";
 
-            return $"{PurchaseValue / lakh} lakh(s).";
+            if (PurchaseValue >= crore){
+                
+                rtnVal = $"{cVal} crore(s) {rtnVal}";
+            }
+            return $"₹{rtnVal}";
                 
 
         }
