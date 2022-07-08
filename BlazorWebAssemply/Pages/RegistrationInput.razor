@@ -14,6 +14,7 @@
                 <td class="td-report" >
                     ₹<InputNumber class="formatinput" style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
                     <ValidationMessage For="@(()=>PurchaseValue)"></ValidationMessage>
+                    <label style="color: red;" >@(PurchaseValue_msg)</label>
                 </td>
             </tr>
             <tr class="tr-alice">
@@ -23,6 +24,7 @@
                 <td class="td-report" >
                     <InputNumber class="formatinput" style="width:6ch" id="WhiteBlackRatio" @bind-Value="WhiteBlackRatio"   /> / @(100 - LrrState.InputData.WhiteBlackRatio)
                     <ValidationMessage For="@(()=>WhiteBlackRatio)"></ValidationMessage>
+                    <label style="color: red;" >@(WhiteBlackRatio_msg)</label>
                 </td>
             </tr>
 
@@ -154,14 +156,23 @@
 
     [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
 
-
+    private string PurchaseValue_msg { get; set; }
+    private string WhiteBlackRatio_msg { get; set; }
+    private int _pvalue { get; set; }
+    private int _wRatio { get; set; }
     public int PurchaseValue
     {
-        get { return LrrState.InputData.PurchaseValue; }
+        get { return string.IsNullOrEmpty(PurchaseValue_msg) ? LrrState.InputData.PurchaseValue : _pvalue; }
         set
         {
+            PurchaseValue_msg = string.Empty;
+            _pvalue = value;
             if (value < 1)
+            {
+                PurchaseValue_msg = "Purchas value cannot be less than 1";
                 return;
+            }
+
             if (LrrState.InputData.PurchaseValue != value) {
                 LrrState.InputData.PurchaseValue = value;
                 ReCalculateValues();
@@ -171,11 +182,21 @@
 
     public int WhiteBlackRatio
     {
-        get { return LrrState.InputData.WhiteBlackRatio; }
+        get { return string.IsNullOrEmpty(WhiteBlackRatio_msg) ? LrrState.InputData.WhiteBlackRatio : _wRatio; }
         set
         {
-            if (value > 100 || value < 0)
+            WhiteBlackRatio_msg = string.Empty;
+            _wRatio = value;
+            if (value > 100 )
+            {
+                WhiteBlackRatio_msg = "White / Black ratio cannot be greater than 100";
                 return;
+            }
+            if (value < 0)
+            {
+                WhiteBlackRatio_msg = "White / Black ratio cannot be greater than 100";
+                return;
+            }
 
             if (LrrState.InputData.WhiteBlackRatio != value) {
                 LrrState.InputData.WhiteBlackRatio = value;
@@ -224,9 +245,16 @@
         }
     }
 
+    private bool hasErrors()
+    {
+        return !(string.IsNullOrEmpty(PurchaseValue_msg) || string.IsNullOrEmpty(WhiteBlackRatio_msg));
+    }
+
     private void ReCalculateValues()
     {
-        
+        if (hasErrors())
+            return;
+
         LrrState.CalculateValues();
         if (RefreshScreen != null)
             RefreshScreen();
