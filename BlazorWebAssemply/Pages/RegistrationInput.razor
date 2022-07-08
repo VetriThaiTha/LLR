@@ -9,33 +9,37 @@
         <tbody>
             <tr>
                 <td class="td-report" >
-                    Purchase Value:
+                    Purchase value:
                 </td>
                 <td class="td-report" >
                     ₹<InputNumber class="formatinput" style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
+                    <ValidationMessage For="@(()=>PurchaseValue)"></ValidationMessage>
+                    <label style="color: red;" >@(PurchaseValue_msg)</label>
                 </td>
             </tr>
             <tr class="tr-alice">
                 <td class="td-report" >
-                    White / Black Ratio:
+                    White / Black ratio:
                 </td>
                 <td class="td-report" >
-                    <InputNumber class="formatinput" style="width:6ch" id="HighestBidValue" @bind-Value="WhiteBlackRatio"   /> / @(100 - LrrState.InputData.WhiteBlackRatio)
-                    <span style="font-size: 10px;">between 1 and 100</span>
+                    <InputNumber class="formatinput" style="width:6ch" id="WhiteBlackRatio" @bind-Value="WhiteBlackRatio"   /> / @(100 - LrrState.InputData.WhiteBlackRatio)
+                    <ValidationMessage For="@(()=>WhiteBlackRatio)"></ValidationMessage>
+                    <label style="color: red;" >@(WhiteBlackRatio_msg)</label>
                 </td>
             </tr>
 
             <tr>
                 <td class="td-report" >
-                    Registration Date:
+                    Registration date:
                 </td>
                 <td class="td-report" >
                     <InputDate class="formatinput" @bind-Value="RegistrationDate" @bind-Value:format="dd-MM-yyyy"   />
+                    <ValidationMessage For="@(()=>RegistrationDate)"></ValidationMessage>
                 </td>
             </tr>
         </tbody>
 </table>
-
+<ValidationSummary />
 <br />
 
 <table class="reportTable">
@@ -47,7 +51,7 @@
         <tbody>
             <tr>
                 <td class="td-report" >
-                    Registration Amount:
+                    Registration amount:
                 </td>
                 <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtWhiteValue
@@ -56,7 +60,7 @@
             </tr>
             <tr class="tr-alice">
                 <td class="td-report" >
-                    Cash Payment (Black):
+                    Cash payment (Black):
                 </td>
                 <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtBlackValue
@@ -76,7 +80,7 @@
         <tbody>
             <tr>
                 <td class="td-report" >
-                    Auction End Date:
+                    Auction end date:
                 </td>
                 <td class="td-report" >
                     @LrrState.AuctionDetails.EndDate.ToString("dd/MMM/yyyy")
@@ -115,7 +119,7 @@
         <tbody>
             <tr>
                 <td class="td-report" >
-                    Highest Bid Value:
+                    Highest bid value:
                 </td>
                 <td class="td-report" >
                     <select class="formatinput" @bind="HighestBidIndex"  >
@@ -137,7 +141,7 @@
                         @if (LrrState.InputData.HighestBidIndex > -1)
                             {
                                 <option value=@Lrr.Shared.DecisionEnum.MatchHighestBid  > Match highest Bid</option>
-                                <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > GiveUp to highest Bid</option>
+                                <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > Give-up to highest Bid</option>
                             }
                     </select>
                 </td>
@@ -152,14 +156,23 @@
 
     [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
 
-
+    private string PurchaseValue_msg { get; set; }
+    private string WhiteBlackRatio_msg { get; set; }
+    private int _pvalue { get; set; }
+    private int _wRatio { get; set; }
     public int PurchaseValue
     {
-        get { return LrrState.InputData.PurchaseValue; }
+        get { return string.IsNullOrEmpty(PurchaseValue_msg) ? LrrState.InputData.PurchaseValue : _pvalue; }
         set
         {
+            PurchaseValue_msg = string.Empty;
+            _pvalue = value;
             if (value < 1)
+            {
+                PurchaseValue_msg = "Purchas value cannot be less than 1";
                 return;
+            }
+
             if (LrrState.InputData.PurchaseValue != value) {
                 LrrState.InputData.PurchaseValue = value;
                 ReCalculateValues();
@@ -169,11 +182,21 @@
 
     public int WhiteBlackRatio
     {
-        get { return LrrState.InputData.WhiteBlackRatio; }
+        get { return string.IsNullOrEmpty(WhiteBlackRatio_msg) ? LrrState.InputData.WhiteBlackRatio : _wRatio; }
         set
         {
-            if (value > 100 || value < 0)
+            WhiteBlackRatio_msg = string.Empty;
+            _wRatio = value;
+            if (value > 100 )
+            {
+                WhiteBlackRatio_msg = "White / Black ratio cannot be greater than 100";
                 return;
+            }
+            if (value < 0)
+            {
+                WhiteBlackRatio_msg = "White / Black ratio cannot be greater than 100";
+                return;
+            }
 
             if (LrrState.InputData.WhiteBlackRatio != value) {
                 LrrState.InputData.WhiteBlackRatio = value;
@@ -222,9 +245,16 @@
         }
     }
 
+    private bool hasErrors()
+    {
+        return !(string.IsNullOrEmpty(PurchaseValue_msg) || string.IsNullOrEmpty(WhiteBlackRatio_msg));
+    }
+
     private void ReCalculateValues()
     {
-        
+        if (hasErrors())
+            return;
+
         LrrState.CalculateValues();
         if (RefreshScreen != null)
             RefreshScreen();

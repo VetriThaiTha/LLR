@@ -15,84 +15,96 @@
             <tr class="td-report">
                 <td class="td-report" >Stamp charge multiple:</td>
                 <td class="td-report" >
-                    <InputNumber class="formatinput" style="width:10ch" id="StampChargePercentage" @bind-Value="@_model.StampChargePercentage"   />
+                    <InputNumber class="formatinput" style="width:10ch" id="StampChargePercentage" @bind-Value="@_model.StampChargePercentage" ParsingErrorMessage="Stamp charge multiple must be a number"   />
                     <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>
+                    <label style="color: red;" >@(_model.GetErrorMessage("StampChargePercentage"))</label>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
             <tr class="tr-alice">
                 <td class="td-report" >Registration fee multiple:</td>
                 <td class="td-report" >
-                    <InputNumber class="formatinput" style="width:10ch" id="RegistrationChargePercentage" @bind-Value="@_model.RegistrationChargePercentage"   />
-                    <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>    
+                    <InputNumber class="formatinput" style="width:10ch" id="RegistrationChargePercentage" @bind-Value="@_model.RegistrationChargePercentage"  ParsingErrorMessage="Registration fee multiple must be a number"   />
+                    <ValidationMessage For="@(()=>_model.RegistrationChargePercentage)"></ValidationMessage>
+                    <label style="color: red;" >@(_model.GetErrorMessage("RegistrationChargePercentage"))</label>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
-            <tr>
+            <tr class="td-report">
                 <td class="td-report" >Auction duration (in months):</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:6ch" id="AuctionDuration" @bind-Value="@_model.AuctionDuration"   />
+                <td class="td-report" ><InputNumber class="formatinput" style="width:6ch" id="AuctionDuration" @bind-Value="@_model.AuctionDuration" ParsingErrorMessage="Auction duration must be a number"   />
                     <ValidationMessage For="@(()=>_model.AuctionDuration)"></ValidationMessage>
+                    <label style="color: red;" >@(_model.GetErrorMessage("AuctionDuration"))</label>
                 </td>
                 <td class="td-notes" >@($"between 1 to 12")</td>
             </tr>
             <tr class="tr-alice">
                 <td class="td-report" >Auction starting value multiple:</td>
                 <td class="td-report" >
-                    <InputNumber class="formatinput" style="width:10ch" id="StartingValueMultiple" @bind-Value="@_model.StartingValueMultiple"   />
+                    <InputNumber class="formatinput" style="width:10ch" id="StartingValueMultiple" @bind-Value="@_model.StartingValueMultiple"  ParsingErrorMessage="Auction starting value multiple must be a number"   />
                     <ValidationMessage For="@(()=>_model.StartingValueMultiple)"></ValidationMessage>
+                    <label style="color: red;" >@(_model.GetErrorMessage("StartingValueMultiple"))</label>
                 </td>
                 <td class="td-notes" >@($"between 1.0 to 10.0")</td>
             </tr>
-            <tr>
+            <tr class="td-report">
                 <td class="td-report" >Auction step value multiple:</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="StepValueMultiple" @bind-Value="@_model.StepValueMultiple"   />
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="StepValueMultiple" @bind-Value="@_model.StepValueMultiple"  ParsingErrorMessage="Auction step value multiple must be a number"   />
                 <ValidationMessage For="@(()=>_model.StepValueMultiple)"></ValidationMessage>
+                <label style="color: red;" >@(_model.GetErrorMessage("StepValueMultiple"))</label>
                 </td>
                 <td class="td-notes" >@($"between 0.01 to 1.0")</td>
             </tr>
 
             <tr class="tr-alice">
-                <td class="td-report" >Give-up Prov buyer incentive multiple:</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio"   />
-                <ValidationMessage For="@(()=>_model.GiveUpProvBuyerIncentiveRatio)"></ValidationMessage>
-                </td>
-                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
-            </tr>
-            <tr>
-                <td class="td-report" >Give-up Seller incentive multiple:</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"   />
+                <td class="td-report" >Seller's incentive multiple in give-up scenario:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"  ParsingErrorMessage="Seller's incentive multiple must be a number"   />
                 <ValidationMessage For="@(()=>_model.GiveUpSellerIncentiveRatio)"></ValidationMessage>
+                <label style="color: red;" >@(_model.GetErrorMessage("GiveUpSellerIncentiveRatio"))</label>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
-            <tr>
-                <td class="td-report" >Match Seller Incentive multiple:</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchSellerIncentiveRatio" @bind-Value="@_model.MatchSellerIncentiveRatio"   />
-                <ValidationMessage For="@(()=>_model.MatchSellerIncentiveRatio)"></ValidationMessage>
+            <tr class="td-report">
+                <td class="td-report" >Provisional buyer's incentive multiple in give-up scenario:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio" ParsingErrorMessage="Provisional buyer's incentive must be a number"   />
+                <ValidationMessage For="@(()=>_model.GiveUpProvBuyerIncentiveRatio)"></ValidationMessage>
+                <label style="color: red;" >@(_model.GetErrorMessage("GiveUpProvBuyerIncentiveRatio"))</label>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
             <tr class="tr-alice">
-                <td class="td-report" >Match Bidder incentive multiple:</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchBidderIncentiveRatio" @bind-Value="@_model.MatchBidderIncentiveRatio"   />
+                <td class="td-report" >Seller's incentive multiple in match scenario:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchSellerIncentiveRatio" @bind-Value="@_model.MatchSellerIncentiveRatio" ParsingErrorMessage="Seller's incentive multiple must be a number"   />
+                <ValidationMessage For="@(()=>_model.MatchSellerIncentiveRatio)"></ValidationMessage>
+                <label style="color: red;" >@(_model.GetErrorMessage("MatchSellerIncentiveRatio"))</label>
+                </td>
+                <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+            </tr>
+
+            <tr class="td-report">
+                <td class="td-report" >Bidder incentive multiple in match scenario:</td>
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchBidderIncentiveRatio" @bind-Value="@_model.MatchBidderIncentiveRatio" ParsingErrorMessage="Bidder incentive multiple must be a number"   />
                 <ValidationMessage For="@(()=>_model.MatchBidderIncentiveRatio)"></ValidationMessage>
+                <label style="color: red;" >@(_model.GetErrorMessage("MatchBidderIncentiveRatio"))</label>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
             <tr class="tr-alice">
                 <td class="td-report" >Brokerage:</td>
-                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="Brokerage" @bind-Value="@_model.Brokerage"   />
+                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="Brokerage" @bind-Value="@_model.Brokerage" ParsingErrorMessage="Brokerage must be a number"   />
                 <ValidationMessage For="@(()=>_model.Brokerage)"></ValidationMessage>
+                <label style="color: red;" >@(_model.GetErrorMessage("Brokerage"))</label>
                 </td>
                 <td class="td-notes" >@($"between 0.0 to 1.0")</td>
             </tr>
 
         </tbody>
 </table>
+<ValidationSummary />
 <button class="btn btn-primary"  @onclick="SaveConfig">Save Config</button>
 <button class="btn btn-primary" type="reset" @onclick="CancelEditConfig">Cancel</button>
 </EditForm>
@@ -111,6 +123,9 @@
 
     private void SaveConfig()
     {
+        _model.Validate();
+        if (_model.hasErrorMesages)
+            return;
         CopyConfig();
         LrrState.EditConfig = false;
         ReCalculateValues();
