@@ -13,8 +13,10 @@
                 </td>
                 <td class="td-report" >
                     ₹<InputNumber class="formatinput" style="width:13ch" id="PurchaseValue" @bind-Value="PurchaseValue"    />
+                    <label>@FormatedPurchaseValue</label>
                     <ValidationMessage For="@(()=>PurchaseValue)"></ValidationMessage>
                     <label style="color: red;" >@(PurchaseValue_msg)</label>
+
                 </td>
             </tr>
             <tr class="tr-alice">
@@ -160,6 +162,27 @@
     private string WhiteBlackRatio_msg { get; set; }
     private int _pvalue { get; set; }
     private int _wRatio { get; set; }
+
+    private string FormatedPurchaseValue
+    {
+        get
+        {
+            int lakh = 100000;
+            int crore = lakh * 100;
+
+            if (PurchaseValue < lakh)
+                return string.Empty;
+
+            
+            if (PurchaseValue >= crore)
+                return $"{PurchaseValue / crore} crore(s).";
+
+            return $"{PurchaseValue / lakh} lakh(s).";
+                
+
+        }
+    }
+
     public int PurchaseValue
     {
         get { return string.IsNullOrEmpty(PurchaseValue_msg) ? LrrState.InputData.PurchaseValue : _pvalue; }
