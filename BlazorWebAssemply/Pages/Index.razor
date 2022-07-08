@@ -5,58 +5,28 @@
 
 <PageTitle>Land Registration Reform Simple Calculator</PageTitle>
 
-<EditForm Model="@LrrState.InputData" >
+<h3>“If all of your dreams came true, would they just change you or would they change the world?”</h3>
+        <h4> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ― Cleo Wade</h4>
 
-<table style="width:100%" >
-    <tr>
-        <td style="width:40%" >
-            <RegistrationInput LrrState="LrrState" RefreshScreen="Refresh"   />
-        </td>
-        <td style="width:60%" >
-            <DisplayDetails LrrState="LrrState"   />
-        </td>
-    </tr>
+
+
+<NavLink class="nav-link" href="simpleCalculator">Simple Calculator</NavLink>
+
+<ul>
+    <li>
+        <a href="https://www.youtube.com/watch?v=wXPBNq0mb7I&list=PL0p_U_-Or0_P31P751VvT81OwYEDX0KyC&index=2" target="_blank">Main video</a>
+    </li>
+    <li>
+        <a href="https://www.youtube.com/watch?v=TBtxBxYsUvU&list=PL0p_U_-Or0_P31P751VvT81OwYEDX0KyC&index=3" target="_blank">Faq video</a>
+    </li>
+    <li>
+        <a href="https://www.youtube.com/watch?v=-SiythpXx1U&list=PL0p_U_-Or0_P31P751VvT81OwYEDX0KyC&index=4" target="_blank">Main video</a>
+    </li>
     
-        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.GiveUpToHighestBid)
-        {
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <GiveUpPaymentSchedule LrrState="LrrState" />
-                </td>
-            </tr>
-        }
-        @if (@LrrState.InputData.Decision == Lrr.Shared.DecisionEnum.MatchHighestBid)
-        {
-            <tr>
-                <td colspan="2">&nbsp;</td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <MatchPaymentSchedule LrrState="LrrState" />
-                </td>
-            </tr>
-        }
-        @if (@LrrState.EditConfig)
-       {
-            <tr>
-                <td colspan="2"><SimpleConfiguration LrrState="LrrState" RefreshScreen="Refresh" ></SimpleConfiguration></td>
-            </tr>
-       }
-       @if (@LrrState.EditConfig == false)
-      {
-          <tr>
-              <td colspan="2"><button class="btn btn-primary" @onclick="DisplayEdiConfig">Edit Config</button></td>
-          </tr>
-
-      }
-</table>
-<ValidationSummary />
+</ul>
 
 
-</EditForm>
+<img src=/iceberg.jpg height=200px width="200px"  />
 
 @code{
 

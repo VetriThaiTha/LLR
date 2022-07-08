@@ -39,19 +39,9 @@
                 </td>
             </tr>
         }
-        @if (@LrrState.EditConfig)
-       {
-            <tr>
-                <td colspan="2"><SimpleConfiguration LrrState="LrrState" RefreshScreen="Refresh" ></SimpleConfiguration></td>
-            </tr>
-       }
-       @if (@LrrState.EditConfig == false)
-      {
-          <tr>
-              <td colspan="2"><button class="btn btn-primary" @onclick="DisplayEdiConfig">Edit Config</button></td>
-          </tr>
-
-      }
+    <tr>
+        <td colspan="2"><SimpleConfiguration LrrState="LrrState" RefreshScreen="Refresh" ></SimpleConfiguration></td>
+    </tr>        
 </table>
 
 
@@ -60,11 +50,7 @@
 
 @code{
 
-    private void DisplayEdiConfig()
-    {
-        LrrState.EditConfig = true;
-        Refresh();
-    }
+    
 
     private void Refresh()
     {
