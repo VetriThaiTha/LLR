@@ -14,51 +14,51 @@
             <tr>
                 <td class="td-report" >Provisional buyer</td>
                 <td class="td-report" >Additional capital</td>
-                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.MatchPaymentSchedule.ProvBuyerAddCapital)</td>
+                <td class="td-report" >₹@LrrState.FmtHelper.CommaSeperatedValue( LrrState.MatchPaymentSchedule.ProvBuyerAddCapital)</td>
                 <td class="td-report" ></td>
-                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} )")</td>
+                <td class="td-notes" >@($"(New price ₹{LrrState.FmtHelper.CommaSeperatedValue(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} )")</td>
             </tr>
             <tr class="tr-alice">
                 <td class="td-report" >Provisional buyer</td>
                 <td class="td-report" >Additional fee</td>
-                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.MatchPaymentSchedule.ProvBuyerAddCapitalFee)</td>
+                <td class="td-report" >₹@LrrState.FmtHelper.CommaSeperatedValue( LrrState.MatchPaymentSchedule.ProvBuyerAddCapitalFee)</td>
                 <td class="td-report" ></td>
-                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Stamp charge multiple {LrrState.Configuration.StampChargePercentage} + Registraion fee multiple {LrrState.Configuration.RegistrationChargePercentage})")</td>
+                <td class="td-notes" >@($"(New price ₹{LrrState.FmtHelper.CommaSeperatedValue(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Stamp charge multiple {LrrState.Configuration.StampChargePercentage} + Registraion fee multiple {LrrState.Configuration.RegistrationChargePercentage})")</td>
             </tr>
             <tr>
                 <td class="td-report" >Original seller</td>
                 <td class="td-report" >Additional profit </td>
                 <td class="td-report" ></td>
-                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.MatchPaymentSchedule.OriginalSellerProfit)</td>
-                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Seller Incentive multiple {LrrState.Configuration.MatchSellerIncentiveRatio})")</td>
+                <td class="td-report" >₹@LrrState.FmtHelper.CommaSeperatedValue( LrrState.MatchPaymentSchedule.OriginalSellerProfit)</td>
+                <td class="td-notes" >@($"(New price ₹{LrrState.FmtHelper.CommaSeperatedValue(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Seller Incentive multiple {LrrState.Configuration.MatchSellerIncentiveRatio})")</td>
             </tr>
             <tr class="tr-alice">
                 <td class="td-report" >Broker </td>
                 <td class="td-report" >Additional brokerage</td>
                 <td class="td-report" ></td>
-                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.MatchPaymentSchedule.BrokerReceive)</td>
-                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Brokerage {LrrState.Configuration.Brokerage})")</td>
+                <td class="td-report" >₹@LrrState.FmtHelper.CommaSeperatedValue( LrrState.MatchPaymentSchedule.BrokerReceive)</td>
+                <td class="td-notes" >@($"(New price ₹{LrrState.FmtHelper.CommaSeperatedValue(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Brokerage {LrrState.Configuration.Brokerage})")</td>
             </tr>
             <tr>
                 <td class="td-report" >Highest bidder</td>
                 <td class="td-report" >Incentive</td>
                 <td class="td-report" ></td>
-                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.MatchPaymentSchedule.BidderIncentive)</td>
-                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Bidder incentive multiple {LrrState.Configuration.MatchBidderIncentiveRatio})")</td>
+                <td class="td-report" >₹@LrrState.FmtHelper.CommaSeperatedValue( LrrState.MatchPaymentSchedule.BidderIncentive)</td>
+                <td class="td-notes" >@($"(New price ₹{LrrState.FmtHelper.CommaSeperatedValue(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} ) * (Bidder incentive multiple {LrrState.Configuration.MatchBidderIncentiveRatio})")</td>
             </tr>
             <!--<tr>
                 <td class="td-report" >Government</td>
                 <td class="td-report" >Extra Tax Income</td>
                 <td class="td-report" ></td>
-                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.MatchPaymentSchedule.GovernmentExtraTax)</td>
+                <td class="td-report" >₹@LrrState.FmtHelper.CommaSeperatedValue( LrrState.MatchPaymentSchedule.GovernmentExtraTax)</td>
                 <td class="td-notes" >@($"")</td>
             </tr> -->
             <tr class="tr-alice">
                 <td class="td-report" >Government</td>
                 <td class="td-report" >Residual profit</td>
                 <td class="td-report" ></td>
-                <td class="td-report" >₹@Lrr.Shared.AuctionDetails.FmtIntVal( LrrState.MatchPaymentSchedule.GovernmentAddlProfit)</td>
-                <td class="td-notes" >@($"(New price ₹{Lrr.Shared.AuctionDetails.FmtIntVal(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} )  - (other incentives)")</td>
+                <td class="td-report" >₹@LrrState.FmtHelper.CommaSeperatedValue( LrrState.MatchPaymentSchedule.GovernmentAddlProfit)</td>
+                <td class="td-notes" >@($"(New price ₹{LrrState.FmtHelper.CommaSeperatedValue(LrrState.GiveUpPaymentSchedule.BidderPay)} - Old reigstration amount ₹{LrrState.AuctionDetails.FmtWhiteValue} )  - (other incentives)")</td>
             </tr>
 
         </tbody>

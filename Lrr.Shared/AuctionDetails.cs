@@ -18,40 +18,14 @@ namespace Lrr.Shared
         public Dictionary<int, string> ValidAuctionBidValues { get; set; } = new Dictionary<int, string>();
 
 
-        public string FmtStartingValue => FmtIntVal(StartingValue);
-        public string FmtStepValue => FmtIntVal(StepValue);
-        public string FmtWhiteValue => FmtIntVal(WhiteValue);
-        public string FmtBlackValue => FmtIntVal(BlackValue); 
+        public string FmtStartingValue => FormattingHelper.CommaSeperated(StartingValue);
+        public string FmtStepValue => FormattingHelper.CommaSeperated(StepValue);
+        public string FmtWhiteValue => FormattingHelper.CommaSeperated(WhiteValue);
+        public string FmtBlackValue => FormattingHelper.CommaSeperated(BlackValue); 
 
-        public static string FmtIntVal(int val)
-        {
-            if (val < 1000)
-                return val.ToString("##0");
-
-            if (val < 100000)
-                return val.ToString("##\\,##0");
-            if (val < 10000000)
-                return val.ToString("##\\,##\\,##0");
-            if (val < 1000000000)
-                return val.ToString("##\\,##\\,##\\,##0");
-
-            return val.ToString("##\\,##\\,##\\,##\\,##0");
-        }
+        
 
 
-        private static string FmtIntVal(long val)
-        {
-            if (val < 1000)
-                return val.ToString("##0");
-
-            if (val < 100000)
-                return val.ToString("##\\,##0");
-            if (val < 10000000)
-                return val.ToString("##\\,##\\,##0");
-            if (val < 1000000000)
-                return val.ToString("##\\,##\\,##\\,##0");
-
-            return val.ToString("##\\,##\\,##\\,##\\,##0");
-        }
+        
     }
 }

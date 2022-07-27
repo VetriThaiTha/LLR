@@ -1,4 +1,4 @@
-﻿@page "/simpleCalculator"
+﻿@page "/simpleCalculatorStepValue"
 
 
 
@@ -18,7 +18,7 @@
     <tr>
         <td colspan="2" >
             <br />
-            <AuctionDetails LrrState="LrrState" RefreshScreen="Refresh"   />
+            <AuctionWithStepInput LrrState="LrrState" RefreshScreen="Refresh"   />
         </td>
     </tr>
     
@@ -58,8 +58,9 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        LrrState.Calculator = new Lrr.Shared.SimpleCalculator(LrrState.Configuration);
+        LrrState.Calculator = new Lrr.Shared.SimpleCalculatorWithStep(LrrState.Configuration);
     }
+
     
 
     private void Refresh()
