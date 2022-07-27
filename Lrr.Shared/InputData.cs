@@ -38,6 +38,8 @@ namespace Lrr.Shared
 
         public DateOnly RegistrationDate { get; set; }
         public int HighestBidIndex { get; set; } = -1;
+        public int HighestBid { get; set; } = 0;
         public DecisionEnum Decision { get; set; } = DecisionEnum.None;
+        
     }
 }

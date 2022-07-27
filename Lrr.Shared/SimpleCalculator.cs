@@ -17,24 +17,12 @@ namespace Lrr.Shared
 
         public void UpdateAuctionDetails(IInputData inputData, IAuctionDetails auctionDetails)
         {
-
-
             auctionDetails.EndDate = inputData.RegistrationDate.AddMonths(configuration.AuctionDuration);
-            auctionDetails.StepValue = GetStepValue(inputData, configuration);
+            auctionDetails.StepValue = 0;
             auctionDetails.StartingValue = GetStartingValue(inputData, configuration);
             auctionDetails.WhiteValue = GetWhiteValue(inputData);
             auctionDetails.BlackValue = (inputData.PurchaseValue - GetWhiteValue(inputData));
-                
-
-            var validValues = new Dictionary<int,string>();
-
-
-            for (int i = 0; i <= 100; i++)
-            {
-                int val = auctionDetails.StartingValue + (i * auctionDetails.StepValue);
-                validValues.Add(i, "₹ " + AuctionDetails.FmtIntVal(val));
-            }
-            auctionDetails.ValidAuctionBidValues = validValues;
+            auctionDetails.ValidAuctionBidValues = new Dictionary<int, string>(); 
 
 
         }
@@ -98,10 +86,7 @@ namespace Lrr.Shared
 
         private static int GetNewPurchaseValue(IInputData inputData, IConfiguration configuration)
         {
-            var stepValue = GetStepValue(inputData, configuration);
-            var startingValue = GetStartingValue(inputData, configuration);
-            var newPurchaseValue = startingValue + (inputData.HighestBidIndex * stepValue);
-            return newPurchaseValue;
+            return inputData.HighestBid;
         }
 
         private static int GetStartingValue(IInputData inputData, IConfiguration configuration)
@@ -109,10 +94,6 @@ namespace Lrr.Shared
             return (int)Math.Ceiling(GetWhiteValue(inputData) * configuration.StartingValueMultiple);
         }
 
-        private static int GetStepValue(IInputData inputData, IConfiguration configuration)
-        {
-            return (int)Math.Ceiling(inputData.PurchaseValue * configuration.StepValueMultiple);
-        }
 
         private static int GetWhiteValue(IInputData inputData)
         {

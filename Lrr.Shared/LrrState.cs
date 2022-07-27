@@ -11,7 +11,7 @@ namespace Lrr.Shared
         public LrrState()
         {
             var config = new SimpleConfiguration();
-            Calculator = new SimpleCalculator(config);
+            Calculator = new SimpleCalculatorWithStep(config);
             Configuration = config;
             InputData = new InputData();
             AuctionDetails = new AuctionDetails();
@@ -25,12 +25,24 @@ namespace Lrr.Shared
         public IAuctionDetails AuctionDetails { get; set; }
         public IGiveUpPaymentSchedule GiveUpPaymentSchedule { get; set;}
         public IMatchPaymentSchedule MatchPaymentSchedule { get; set; }
+        public FormattingHelper FmtHelper { get; } = new FormattingHelper();
         public bool EditConfig { get; set; } = false;
         public void CalculateValues()
         {
             Calculator.UpdateAuctionDetails(InputData, AuctionDetails);
             GiveUpPaymentSchedule = Calculator.GetGiveUpPaymentSchedule(InputData);
             MatchPaymentSchedule = Calculator.GetMatchPaymentSchedule(InputData);
+        }
+
+        public bool HasValidBid()
+        {
+            if (InputData.HighestBidIndex > 0 )
+                return true;
+
+            if (InputData.HighestBid >= AuctionDetails.StartingValue)
+                return true;
+
+            return false;
         }
     }
 }

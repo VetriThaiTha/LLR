@@ -1,0 +1,137 @@
+﻿@using Lrr.Shared;
+
+<table class="reportTable">
+        <thead class="reportHead">
+            <tr  >
+                <th class="td-report" colspan="3" > Auction detail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-report" >
+                    Auction end date:
+                </td>
+                <td class="td-report" >
+                    @LrrState.AuctionDetails.EndDate.ToString("dd/MMM/yyyy")
+                </td>
+                <td class="td-notes" >@($"Registration date + (auction duration {LrrState.Configuration.AuctionDuration} months) ")</td>
+            </tr>
+            <tr class="tr-alice">
+                <td class="td-report" >
+                    Auction starting value:
+                </td>
+                <td class="td-report" >
+                    ₹@LrrState.AuctionDetails.FmtStartingValue
+                </td>
+                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction starting value multiple {LrrState.Configuration.StartingValueMultiple})")</td>
+            </tr>
+
+            <tr>
+                <td class="td-report" >
+                    Auction step value:
+                </td>
+                <td class="td-report" >
+                    ₹@LrrState.AuctionDetails.FmtStepValue
+                </td>
+                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction step value multiple {LrrState.Configuration.StepValueMultiple})")</td>
+            </tr>
+        </tbody>
+</table>
+
+<br />
+<table class="reportTable">
+        <thead class="reportHead">
+            <tr  >
+                <th class="td-report" colspan="3" > Auction decisions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="td-report" >
+                    Highest bid value:
+                </td>
+                <td class="td-report" >
+                    <select class="formatinput" @bind="HighestBidIndex"  >
+                        <option value=-1 >-- Select --</option>
+                        @foreach (var item in LrrState.AuctionDetails.ValidAuctionBidValues)
+                       {
+                           <option value=@item.Key >@item.Value</option>
+                       }
+                    </select>
+                </td>
+            </tr>
+            <tr class="tr-alice">
+                <td class="td-report" >
+                    Provisional buyer's decision:
+                </td>
+                <td class="td-report" >
+                    <select class="formatinput" @bind="Decision"  >
+                        <option value=@Lrr.Shared.DecisionEnum.None > None </option>
+                        @if (LrrState.HasValidBid())
+                            {
+                                <option value=@Lrr.Shared.DecisionEnum.MatchHighestBid  > Match highest Bid</option>
+                                <option value=@Lrr.Shared.DecisionEnum.GiveUpToHighestBid > Give-up to highest Bid</option>
+                            }
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+</table>
+
+@code {
+
+
+    [Parameter,EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
+
+    [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
+
+    
+    public int HighestBidIndex
+    {
+        get { return LrrState.InputData.HighestBidIndex; }
+        set
+        {
+            if (LrrState.InputData.HighestBidIndex != value) {
+                LrrState.InputData.HighestBidIndex = value;
+
+                if (HighestBidIndex < 0)
+                    Decision = Lrr.Shared.DecisionEnum.None;
+
+                ReCalculateValues();
+            }
+        }
+    }
+
+    public Lrr.Shared.DecisionEnum Decision
+    {
+        get { return LrrState.InputData.Decision; }
+        set
+        {
+            if (LrrState.InputData.Decision != value) {
+                LrrState.InputData.Decision = value;
+                ReCalculateValues();
+            }
+        }
+    }
+
+    private bool hasErrors()
+    {
+        return false;
+    }
+
+    private void ReCalculateValues()
+    {
+        if (hasErrors())
+            return;
+
+        LrrState.CalculateValues();
+        if (RefreshScreen != null)
+            RefreshScreen();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+            ReCalculateValues();
+    }
+}
