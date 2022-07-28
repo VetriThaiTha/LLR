@@ -8,10 +8,10 @@ namespace Lrr.Shared
 {
     public class FormattingHelper
     {
-        const int thousand = 1000;
-        const int lakh = thousand * 100;
-        const int crore = lakh * 100;
-        const int hunderedCrore = crore * 100;
+        public const int thousand = 1000;
+        public const int lakh = thousand * 100;
+        public const int crore = lakh * 100;
+        public const int hunderedCrore = crore * 100;
 
         public string ShortFormat(int value)
         {
@@ -22,7 +22,7 @@ namespace Lrr.Shared
                 var cVal = value / crore;
                 var lVal = (value / lakh) % 100;
 
-                var rtnVal = $"{lVal} lakh(s).";
+                var rtnVal = $"{lVal} lakh(s)";
 
                 if (value >= crore)
                 {

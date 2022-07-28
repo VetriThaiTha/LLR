@@ -20,16 +20,33 @@ namespace Lrr.Shared
 
     public interface IBandConfiguration : IConfiguration
     {
-
+        public IBand Band1 { get; set; }
+        public IBand Band2 { get; set; }
+        public IBand Band3 { get; set; }
+        public IBand Band4 { get; set; }
+        public IBand Band5 { get; set; }
+        public IBand Band6 { get; set; }
     }
     public interface ICurveConfiguration : IConfiguration
     {
+        public ICurvePoint Point1 { get; set; }
+        public ICurvePoint Point2 { get; set; }
+        public ICurvePoint Point3 { get; set; }
+        public ICurvePoint Point4 { get; set; }
+        public ICurvePoint Point5 { get; set; }
+        public ICurvePoint Point6 { get; set; }
+        public ICurvePoint Point7 { get; set; }
+    }
 
+    public interface ICurvePoint
+    {
+        public int Value { get; set; }
+        public double StartingValueMultiple { get; set; }
     }
     public interface IBand
     {
-        public int startValue { get; set; }
-        public double StartingValueMultiple { get; }
+        public int EndValue { get; set; }
+        public double StartingValueMultiple { get; set; }
     }
 
     public interface IConfiguration

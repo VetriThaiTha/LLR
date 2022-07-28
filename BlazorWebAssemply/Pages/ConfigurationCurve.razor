@@ -49,9 +49,100 @@
                 <tr class="tr-alice">
                     <td class="td-report" >Auction starting value Bands:</td>
                     <td class="td-report" >
-                        
+                        <table>
+                            <tr>
+                                <td class="td-report" >Point</td>
+                                <td class="td-report" >Value</td>
+                                <td class="td-report" >StartingValueMultiple</td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Point - 1</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Point1Value"  ParsingErrorMessage="Value must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point1Value)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point1Value"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Point1StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point1StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point1StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Point - 2</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Point2Value"  ParsingErrorMessage="must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point2Value)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point2Value"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Point2StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point2StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point2StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Point - 3</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Point3Value"  ParsingErrorMessage="must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point3Value)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point3Value"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Point3StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point3StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point3StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Point - 4</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Point4Value"  ParsingErrorMessage="must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point4Value)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point4Value"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Point4StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point4StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point4StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Point - 5</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Point5Value"  ParsingErrorMessage="must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point5Value)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point5Value"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Point5StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point5StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point5StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Point - 6</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Point6Value"  ParsingErrorMessage="must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point6Value)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point6Value"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Point6StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point6StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point6StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Point - 7</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Point7Value"  ParsingErrorMessage="must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point7Value)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point7Value"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Point7StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Point7StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Point7StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                        </table>
                     </td>
-                    <td class="td-notes" >@($"between 1.0 to 10.0")</td>
+                    <td class="td-notes" ></td>
                 </tr>
 
                 <tr class="tr-alice">
@@ -110,7 +201,7 @@
     [Parameter, EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
     [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
     private Lrr.Shared.ConfigurationCurve _simpleConfig ;
-    private ConfigurationBandsModel _model = new();
+    private ConfigurationCurveModel _model = new();
 
     protected override void OnInitialized()
     {
@@ -154,7 +245,7 @@
     {
         _simpleConfig.StampChargePercentage = _model.StampChargePercentage;
         _simpleConfig.RegistrationChargePercentage = _model.RegistrationChargePercentage;
-        
+
         _simpleConfig.AuctionDuration = _model.AuctionDuration;
 
         _simpleConfig.GiveUpProvBuyerIncentiveRatio = _model.GiveUpProvBuyerIncentiveRatio;
@@ -164,7 +255,26 @@
         _simpleConfig.MatchSellerIncentiveRatio = _model.MatchSellerIncentiveRatio;
         _simpleConfig.MatchBidderIncentiveRatio = _model.MatchBidderIncentiveRatio;
 
+        _simpleConfig.Point1.Value = _model.Point1Value;
+        _simpleConfig.Point1.StartingValueMultiple = _model.Point1StartingValueMultiple;
 
+        _simpleConfig.Point2.Value = _model.Point2Value;
+        _simpleConfig.Point2.StartingValueMultiple = _model.Point2StartingValueMultiple;
+
+        _simpleConfig.Point3.Value = _model.Point3Value;
+        _simpleConfig.Point3.StartingValueMultiple = _model.Point3StartingValueMultiple;
+
+        _simpleConfig.Point4.Value = _model.Point4Value;
+        _simpleConfig.Point4.StartingValueMultiple = _model.Point4StartingValueMultiple;
+
+        _simpleConfig.Point5.Value = _model.Point5Value;
+        _simpleConfig.Point5.StartingValueMultiple = _model.Point5StartingValueMultiple;
+
+        _simpleConfig.Point6.Value = _model.Point6Value;
+        _simpleConfig.Point6.StartingValueMultiple = _model.Point6StartingValueMultiple;
+
+        _simpleConfig.Point7.Value = _model.Point7Value;
+        _simpleConfig.Point7.StartingValueMultiple = _model.Point7StartingValueMultiple;
 
     }
 
@@ -189,7 +299,26 @@
         _model.MatchSellerIncentiveRatio = _simpleConfig.MatchSellerIncentiveRatio;
         _model.MatchBidderIncentiveRatio = _simpleConfig.MatchBidderIncentiveRatio;
 
+        _model.Point1Value = _simpleConfig.Point1.Value;
+        _model.Point1StartingValueMultiple = _simpleConfig.Point1.StartingValueMultiple;
 
+        _model.Point2Value = _simpleConfig.Point2.Value;
+        _model.Point2StartingValueMultiple = _simpleConfig.Point2.StartingValueMultiple;
+
+        _model.Point3Value = _simpleConfig.Point3.Value;
+        _model.Point3StartingValueMultiple = _simpleConfig.Point3.StartingValueMultiple;
+
+        _model.Point4Value = _simpleConfig.Point4.Value;
+        _model.Point4StartingValueMultiple = _simpleConfig.Point4.StartingValueMultiple;
+
+        _model.Point5Value = _simpleConfig.Point5.Value;
+        _model.Point5StartingValueMultiple = _simpleConfig.Point5.StartingValueMultiple;
+
+        _model.Point6Value = _simpleConfig.Point6.Value;
+        _model.Point6StartingValueMultiple = _simpleConfig.Point6.StartingValueMultiple;
+
+        _model.Point7Value = _simpleConfig.Point7.Value;
+        _model.Point7StartingValueMultiple = _simpleConfig.Point7.StartingValueMultiple;
 
     }
 
