@@ -47,14 +47,13 @@
                     <td class="td-notes" >@($"between 1 to 12")</td>
                 </tr>
                 <tr class="tr-alice">
-                    <td class="td-report" >Auction starting value multiple:</td>
+                    <td class="td-report" >Auction starting value Bands:</td>
                     <td class="td-report" >
-                        <InputNumber class="formatinput" style="width:10ch" id="StartingValueMultiple" @bind-Value="@_model.StartingValueMultiple"  ParsingErrorMessage="Auction starting value multiple must be a number"   />
-                        <ValidationMessage For="@(()=>_model.StartingValueMultiple)"></ValidationMessage>
-                        <label style="color: red;" >@(_model.GetErrorMessage("StartingValueMultiple"))</label>
+                        
                     </td>
                     <td class="td-notes" >@($"between 1.0 to 10.0")</td>
                 </tr>
+
                 <tr class="tr-alice">
                     <td class="td-report" >Seller's incentive multiple in give-up scenario:</td>
                     <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"  ParsingErrorMessage="Seller's incentive multiple must be a number"   />
@@ -110,9 +109,8 @@
 @code {
     [Parameter, EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
     [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
-
-    private SimpleConfigurationModel _model = new();
-    private Lrr.Shared.SimpleConfiguration _simpleConfig ;
+    private Lrr.Shared.ConfigurationCurve _simpleConfig ;
+    private ConfigurationBandsModel _model = new();
 
     protected override void OnInitialized()
     {
@@ -156,9 +154,8 @@
     {
         _simpleConfig.StampChargePercentage = _model.StampChargePercentage;
         _simpleConfig.RegistrationChargePercentage = _model.RegistrationChargePercentage;
-
+        
         _simpleConfig.AuctionDuration = _model.AuctionDuration;
-        _simpleConfig.StartingValueMultiple = _model.StartingValueMultiple;
 
         _simpleConfig.GiveUpProvBuyerIncentiveRatio = _model.GiveUpProvBuyerIncentiveRatio;
         _simpleConfig.GiveUpSellerIncentiveRatio = _model.GiveUpSellerIncentiveRatio;
@@ -173,7 +170,7 @@
 
     private void InitValues()
     {
-        _simpleConfig = LrrState.Configuration as Lrr.Shared.SimpleConfiguration;
+        _simpleConfig = LrrState.Configuration as Lrr.Shared.ConfigurationCurve;
         if (_simpleConfig == null)
         {
             _model.Invalidate();
@@ -184,7 +181,6 @@
         _model.RegistrationChargePercentage = _simpleConfig.RegistrationChargePercentage;
         
         _model.AuctionDuration = _simpleConfig.AuctionDuration;
-        _model.StartingValueMultiple = _simpleConfig.StartingValueMultiple;
 
         _model.GiveUpProvBuyerIncentiveRatio = _simpleConfig.GiveUpProvBuyerIncentiveRatio;
         _model.GiveUpSellerIncentiveRatio = _simpleConfig.GiveUpSellerIncentiveRatio;

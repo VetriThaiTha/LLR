@@ -55,6 +55,15 @@
                     </td>
                     <td class="td-notes" >@($"between 1.0 to 10.0")</td>
                 </tr>
+                <tr class="td-report">
+                    <td class="td-report" >Auction step value multiple:</td>
+                    <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="StepValueMultiple" @bind-Value="@_model.StepValueMultiple"  ParsingErrorMessage="Auction step value multiple must be a number"   />
+                        <ValidationMessage For="@(()=>_model.StepValueMultiple)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("StepValueMultiple"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.01 to 1.0")</td>
+                </tr>
+
                 <tr class="tr-alice">
                     <td class="td-report" >Seller's incentive multiple in give-up scenario:</td>
                     <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"  ParsingErrorMessage="Seller's incentive multiple must be a number"   />
@@ -111,8 +120,8 @@
     [Parameter, EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
     [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
 
-    private SimpleConfigurationModel _model = new();
-    private Lrr.Shared.SimpleConfiguration _simpleConfig ;
+    private SimpleConfigurationModelWithSteps _model = new();
+    private Lrr.Shared.SimpleConfigurationWithStep _simpleConfig ;
 
     protected override void OnInitialized()
     {
@@ -159,6 +168,7 @@
 
         _simpleConfig.AuctionDuration = _model.AuctionDuration;
         _simpleConfig.StartingValueMultiple = _model.StartingValueMultiple;
+        _simpleConfig.StepValueMultiple = _model.StepValueMultiple;
 
         _simpleConfig.GiveUpProvBuyerIncentiveRatio = _model.GiveUpProvBuyerIncentiveRatio;
         _simpleConfig.GiveUpSellerIncentiveRatio = _model.GiveUpSellerIncentiveRatio;
@@ -173,7 +183,7 @@
 
     private void InitValues()
     {
-        _simpleConfig = LrrState.Configuration as Lrr.Shared.SimpleConfiguration;
+        _simpleConfig = LrrState.Configuration as Lrr.Shared.SimpleConfigurationWithStep;
         if (_simpleConfig == null)
         {
             _model.Invalidate();
@@ -185,6 +195,7 @@
         
         _model.AuctionDuration = _simpleConfig.AuctionDuration;
         _model.StartingValueMultiple = _simpleConfig.StartingValueMultiple;
+        _model.StepValueMultiple = _simpleConfig.StepValueMultiple;
 
         _model.GiveUpProvBuyerIncentiveRatio = _simpleConfig.GiveUpProvBuyerIncentiveRatio;
         _model.GiveUpSellerIncentiveRatio = _simpleConfig.GiveUpSellerIncentiveRatio;

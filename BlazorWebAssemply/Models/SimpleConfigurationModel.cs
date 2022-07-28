@@ -2,23 +2,38 @@
 {
     using System.ComponentModel.DataAnnotations;
     using Lrr.Shared;
+    public class SimpleConfigurationModel : ConfigurationModel
+    {
+        private double _StartingValueMultiple;
+        [Required] public double StartingValueMultiple { get => _StartingValueMultiple; set { _StartingValueMultiple = value; Validate(); } }
 
-    public class SimpleConfigurationModel
+        public override void Validate()
+        {
+            base.Validate();
+            if (StartingValueMultiple < 1.0)
+                _errorMesages.Add("StartingValueMultiple", "Auction starting value multiple cannot be less than 1.0");
+            if (StartingValueMultiple > 10.0)
+                _errorMesages.Add("StartingValueMultiple", "Auction starting value multiple cannot be greater than 10.0");
+        }
+    }
+
+    public abstract class ConfigurationModel
     {
 
-        private Dictionary<string, string> _errorMesages = new();
+        protected internal Dictionary<string, string> _errorMesages = new();
         public bool hasErrorMesages { get { return _errorMesages.Count() > 0; } }
-
+        public void Invalidate()
+        {
+            _errorMesages.Clear();
+            _errorMesages.Add("All", "Invalid state.");
+        }
         private double _stampChargePercentage;
         [Required] public double StampChargePercentage { get => _stampChargePercentage; set { _stampChargePercentage = value; Validate(); } }
         private double _RegistrationChargePercentage;
         [Required] public double RegistrationChargePercentage { get => _RegistrationChargePercentage; set { _RegistrationChargePercentage = value; Validate(); } }
         private int _AuctionDuration;
         [Required] public int AuctionDuration { get => _AuctionDuration; set { _AuctionDuration = value; Validate(); } }
-        private double _StartingValueMultiple;
-        [Required] public double StartingValueMultiple { get => _StartingValueMultiple; set { _StartingValueMultiple = value; Validate(); } }
-        private double _StepValueMultiple;
-        [Required] public double StepValueMultiple { get => _StepValueMultiple; set { _StepValueMultiple = value; Validate(); } }
+        
         private double _GiveUpProvBuyerIncentiveRatio;
 
         [Required] public double GiveUpProvBuyerIncentiveRatio { get => _GiveUpProvBuyerIncentiveRatio; set { _GiveUpProvBuyerIncentiveRatio = value; Validate(); } }
@@ -38,7 +53,7 @@
             return _errorMesages.TryGetValue(property, out var errorMesages) ?errorMesages:String.Empty;
         }
 
-        public void Validate()
+        public virtual void Validate()
         {
             _errorMesages.Clear();
 
@@ -57,15 +72,9 @@
             if (AuctionDuration > 12)
                 _errorMesages.Add("AuctionDuration", "Auction duration cannot be greater than 12");
 
-            if (StartingValueMultiple < 1.0)
-                _errorMesages.Add("StartingValueMultiple", "Auction starting value multiple cannot be less than 1.0");
-            if (StartingValueMultiple > 10.0)
-                _errorMesages.Add("StartingValueMultiple", "Auction starting value multiple cannot be greater than 10.0");
+            
 
-            if (StepValueMultiple < 0.01)
-                _errorMesages.Add("StepValueMultiple", "Auction step value multiple cannot be less than 0.01");
-            if (StepValueMultiple >= 1.0)
-                _errorMesages.Add("StepValueMultiple", "Auction step value multiple cannot be greater than equal to 1.0");
+            
 
             if (GiveUpSellerIncentiveRatio < 0.0)
                 _errorMesages.Add("GiveUpSellerIncentiveRatio", "Seller's incentive multiple cannot be less than 1.0");

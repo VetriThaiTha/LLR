@@ -23,7 +23,7 @@
                 <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtStartingValue
                 </td>
-                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction starting value multiple {LrrState.Configuration.StartingValueMultiple})")</td>
+                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction starting value multiple {LrrState.GetStartingValueMultiple()})")</td>
             </tr>
 
             <tr>
@@ -33,7 +33,7 @@
                 <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtStepValue
                 </td>
-                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction step value multiple {LrrState.Configuration.StepValueMultiple})")</td>
+                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction step value multiple {_config.StepValueMultiple})")</td>
             </tr>
         </tbody>
 </table>
@@ -82,10 +82,16 @@
 
 
     [Parameter,EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
-
     [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
+    private SimpleConfigurationWithStep _config;
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        _config = LrrState.Configuration as SimpleConfigurationWithStep;
+    }
     
+
     public int HighestBidIndex
     {
         get { return LrrState.InputData.HighestBidIndex; }

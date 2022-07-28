@@ -6,6 +6,32 @@ using System.Threading.Tasks;
 
 namespace Lrr.Shared
 {
+    public interface ISimpleConfiguration : IConfiguration
+    {
+        public double StartingValueMultiple { get; }
+
+    }
+
+    public interface ISimpleConfigurationWithStep : IConfiguration, ISimpleConfiguration
+    {
+        public double StepValueMultiple { get; }
+
+    }
+
+    public interface IBandConfiguration : IConfiguration
+    {
+
+    }
+    public interface ICurveConfiguration : IConfiguration
+    {
+
+    }
+    public interface IBand
+    {
+        public int startValue { get; set; }
+        public double StartingValueMultiple { get; }
+    }
+
     public interface IConfiguration
     {
         
@@ -13,8 +39,9 @@ namespace Lrr.Shared
         public double RegistrationChargePercentage { get;  }
 
         public int AuctionDuration { get;  }
-        public double StartingValueMultiple { get;  }
-        public double StepValueMultiple { get;  }
+        
+
+        public double GetStartingValueMultiple(int regValue);
 
 
         public double GiveUpProvBuyerIncentiveRatio { get; }

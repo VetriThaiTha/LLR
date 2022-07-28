@@ -8,14 +8,15 @@ namespace Lrr.Shared
 {
     public class SimpleCalculator : ICalculator
     {
-        protected SimpleConfiguration configuration;
+        protected IConfiguration configuration;
 
-        public SimpleCalculator(SimpleConfiguration simpleConfiguration)
+        public SimpleCalculator()
         {
-            configuration = simpleConfiguration;
+            configuration = new SimpleConfiguration();
         }
 
-        public void UpdateAuctionDetails(IInputData inputData, IAuctionDetails auctionDetails)
+        public IConfiguration Configuration { get { return configuration; } } 
+        public virtual void UpdateAuctionDetails(IInputData inputData, IAuctionDetails auctionDetails)
         {
             auctionDetails.EndDate = inputData.RegistrationDate.AddMonths(configuration.AuctionDuration);
             auctionDetails.StepValue = 0;
@@ -89,13 +90,14 @@ namespace Lrr.Shared
             return inputData.HighestBid;
         }
 
-        private static int GetStartingValue(IInputData inputData, IConfiguration configuration)
+        protected static int GetStartingValue(IInputData inputData, IConfiguration configuration)
         {
-            return (int)Math.Ceiling(GetWhiteValue(inputData) * configuration.StartingValueMultiple);
+            var registrationValue = GetWhiteValue(inputData);
+            return (int)Math.Ceiling(registrationValue * configuration .GetStartingValueMultiple(registrationValue) );
         }
 
 
-        private static int GetWhiteValue(IInputData inputData)
+        protected static int GetWhiteValue(IInputData inputData)
         {
             ulong tmp = (ulong)inputData.PurchaseValue * (ulong) inputData.WhiteBlackRatio;
             

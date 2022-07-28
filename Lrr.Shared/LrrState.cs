@@ -10,16 +10,14 @@ namespace Lrr.Shared
     {
         public LrrState()
         {
-            var config = new SimpleConfiguration();
-            Calculator = new SimpleCalculatorWithStep(config);
-            Configuration = config;
+            Calculator = new SimpleCalculatorWithStep();
             InputData = new InputData();
             AuctionDetails = new AuctionDetails();
             GiveUpPaymentSchedule = new GiveUpPaymentSchedule();
             MatchPaymentSchedule = new MatchPaymentSchedule();
         }
         public ICalculator Calculator { get; set; }
-        public SimpleConfiguration Configuration { get; set; }
+        public IConfiguration Configuration { get { return Calculator.Configuration; } }
         public IInputData InputData { get; set; }
 
         public IAuctionDetails AuctionDetails { get; set; }
@@ -43,6 +41,11 @@ namespace Lrr.Shared
                 return true;
 
             return false;
+        }
+
+        public double GetStartingValueMultiple()
+        {
+            return Configuration.GetStartingValueMultiple(AuctionDetails.WhiteValue);
         }
     }
 }
