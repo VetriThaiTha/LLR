@@ -23,7 +23,7 @@
                 <td class="td-report" >
                     ₹@LrrState.AuctionDetails.FmtStartingValue
                 </td>
-                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction starting value multiple {LrrState.Configuration.StartingValueMultiple})")</td>
+                <td class="td-notes" >@($"(Registration value ₹{@LrrState.AuctionDetails.FmtWhiteValue} ) * (Auction starting value multiple {LrrState.GetStartingValueMultiple()})")</td>
             </tr>
 
         </tbody>

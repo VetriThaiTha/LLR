@@ -1,0 +1,313 @@
+﻿@using Lrr.Models;
+@using Lrr.Shared;
+
+<br />
+
+@if (@LrrState.EditConfig == false)
+{
+    <button class="btn btn-primary" @onclick="DisplayEdiConfig">Edit Config</button>
+}
+
+@if (@LrrState.EditConfig)
+{
+    <EditForm Model="@_model" >
+        <table class="reportTable">
+            <thead class="reportHead">
+                <tr  >
+                    <th class="td-report" colspan="3" >Edit configuration</th>
+                </tr>
+            </thead>
+
+            <tbody class="reportTable" >
+                <tr class="td-report">
+                    <td class="td-report" >Stamp charge multiple:</td>
+                    <td class="td-report" >
+                        <InputNumber class="formatinput" style="width:10ch" id="StampChargePercentage" @bind-Value="@_model.StampChargePercentage" ParsingErrorMessage="Stamp charge multiple must be a number"   />
+                        <ValidationMessage For="@(()=>_model.StampChargePercentage)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("StampChargePercentage"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+                </tr>
+                <tr class="tr-alice">
+                    <td class="td-report" >Registration fee multiple:</td>
+                    <td class="td-report" >
+                        <InputNumber class="formatinput" style="width:10ch" id="RegistrationChargePercentage" @bind-Value="@_model.RegistrationChargePercentage"  ParsingErrorMessage="Registration fee multiple must be a number"   />
+                        <ValidationMessage For="@(()=>_model.RegistrationChargePercentage)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("RegistrationChargePercentage"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+                </tr>
+
+                <tr class="td-report">
+                    <td class="td-report" >Auction duration (in months):</td>
+                    <td class="td-report" ><InputNumber class="formatinput" style="width:6ch" id="AuctionDuration" @bind-Value="@_model.AuctionDuration" ParsingErrorMessage="Auction duration must be a number"   />
+                        <ValidationMessage For="@(()=>_model.AuctionDuration)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("AuctionDuration"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 1 to 12")</td>
+                </tr>
+                <tr class="tr-alice">
+                    <td class="td-report" >Auction starting value Bands:</td>
+                    <td class="td-report" >
+                        <table>
+                            <tr>
+                                <td class="td-report" >Band</td>
+                                <td class="td-report" >Start value</td>
+                                <td class="td-report" >End value</td>
+                                <td class="td-report" >StartingValueMultiple</td>
+                            </tr>
+                            <tr>
+                                <td class="td-report" >Band - 1</td>
+                                <td class="td-report" >₹0</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Band1EndValue"  ParsingErrorMessage="End value must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band1EndValue)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band1EndValue"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Band1StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band1StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band1StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Band - 2</td>
+                                <td class="td-report" >@(LrrState.FmtHelper.ShortFormat(_model.Band1EndValue))</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Band2EndValue"  ParsingErrorMessage="End value must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band2EndValue)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band2EndValue"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Band2StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band2StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band2StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Band - 3</td>
+                                <td class="td-report" >@(LrrState.FmtHelper.ShortFormat(_model.Band2EndValue))</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Band3EndValue"  ParsingErrorMessage="End value must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band3EndValue)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band3EndValue"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Band3StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band3StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band3StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Band - 4</td>
+                                <td class="td-report" >@(LrrState.FmtHelper.ShortFormat(_model.Band3EndValue))</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Band4EndValue"  ParsingErrorMessage="End value must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band4EndValue)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band4EndValue"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Band4StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band4StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band4StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Band - 5</td>
+                                <td class="td-report" >@(LrrState.FmtHelper.ShortFormat(_model.Band4EndValue))</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Band5EndValue"  ParsingErrorMessage="End value must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band5EndValue)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band5EndValue"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Band5StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band5StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band5StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-report" >Band - 6</td>
+                                <td class="td-report" >@(LrrState.FmtHelper.ShortFormat(_model.Band5EndValue))</td>
+                                <td class="td-report" >₹<InputNumber class="formatinput" style="width:13ch" @bind-Value="@_model.Band6EndValue"  ParsingErrorMessage="End value must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band3EndValue)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band6EndValue"))</label>
+                                </td>
+                                <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" @bind-Value="@_model.Band6StartingValueMultiple"  ParsingErrorMessage="Starting value multiple must be a number"   />
+                                    <ValidationMessage For="@(()=>_model.Band6StartingValueMultiple)"></ValidationMessage>
+                                    <label style="color: red;" >@(_model.GetErrorMessage("Band6StartingValueMultiple"))</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="td-notes" ></td>
+                </tr>
+
+                <tr class="tr-alice">
+                    <td class="td-report" >Seller's incentive multiple in give-up scenario:</td>
+                    <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpSellerIncentiveRatio" @bind-Value="@_model.GiveUpSellerIncentiveRatio"  ParsingErrorMessage="Seller's incentive multiple must be a number"   />
+                        <ValidationMessage For="@(()=>_model.GiveUpSellerIncentiveRatio)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("GiveUpSellerIncentiveRatio"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+                </tr>
+
+                <tr class="td-report">
+                    <td class="td-report" >Provisional buyer's incentive multiple in give-up scenario:</td>
+                    <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="GiveUpProvBuyerIncentiveRatio" @bind-Value="@_model.GiveUpProvBuyerIncentiveRatio" ParsingErrorMessage="Provisional buyer's incentive must be a number"   />
+                        <ValidationMessage For="@(()=>_model.GiveUpProvBuyerIncentiveRatio)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("GiveUpProvBuyerIncentiveRatio"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+                </tr>
+
+                <tr class="tr-alice">
+                    <td class="td-report" >Seller's incentive multiple in match scenario:</td>
+                    <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchSellerIncentiveRatio" @bind-Value="@_model.MatchSellerIncentiveRatio" ParsingErrorMessage="Seller's incentive multiple must be a number"   />
+                        <ValidationMessage For="@(()=>_model.MatchSellerIncentiveRatio)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("MatchSellerIncentiveRatio"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+                </tr>
+
+                <tr class="td-report">
+                    <td class="td-report" >Bidder incentive multiple in match scenario:</td>
+                    <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="MatchBidderIncentiveRatio" @bind-Value="@_model.MatchBidderIncentiveRatio" ParsingErrorMessage="Bidder incentive multiple must be a number"   />
+                        <ValidationMessage For="@(()=>_model.MatchBidderIncentiveRatio)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("MatchBidderIncentiveRatio"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+                </tr>
+
+                <tr class="tr-alice">
+                    <td class="td-report" >Brokerage:</td>
+                    <td class="td-report" ><InputNumber class="formatinput" style="width:10ch" id="Brokerage" @bind-Value="@_model.Brokerage" ParsingErrorMessage="Brokerage must be a number"   />
+                        <ValidationMessage For="@(()=>_model.Brokerage)"></ValidationMessage>
+                        <label style="color: red;" >@(_model.GetErrorMessage("Brokerage"))</label>
+                    </td>
+                    <td class="td-notes" >@($"between 0.0 to 1.0")</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <ValidationSummary />
+        <button class="btn btn-primary" disabled="@_model.hasErrorMesages"  @onclick="SaveConfig">Save Config</button>
+        <button class="btn btn-primary" type="reset" @onclick="CancelEditConfig">Cancel</button>
+    </EditForm>
+}
+@code {
+    [Parameter, EditorRequired] public Lrr.Shared.LrrState LrrState { get; set; }
+    [Parameter, EditorRequired] public Action RefreshScreen { get; set; }
+    private Lrr.Shared.ConfigurationBands _simpleConfig ;
+    private ConfigurationBandsModel _model = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        InitValues();
+        RefreshScreen();
+    }
+
+    private void DisplayEdiConfig()
+    {
+        LrrState.EditConfig = true;
+        RefreshScreen();
+    }
+
+    private void SaveConfig()
+    {
+        _model.Validate();
+        if (_model.hasErrorMesages)
+            return;
+        CopyConfig();
+        LrrState.EditConfig = false;
+        ReCalculateValues();
+    }
+
+    private void CancelEditConfig()
+    {
+        InitValues();
+        LrrState.EditConfig = false;
+        ReCalculateValues();
+    }
+
+    private void ReCalculateValues()
+    {
+        this.StateHasChanged();
+        LrrState.CalculateValues();
+        if (RefreshScreen != null)
+            RefreshScreen();
+    }
+
+    private void CopyConfig()
+    {
+        _simpleConfig.StampChargePercentage = _model.StampChargePercentage;
+        _simpleConfig.RegistrationChargePercentage = _model.RegistrationChargePercentage;
+
+        _simpleConfig.AuctionDuration = _model.AuctionDuration;
+
+        _simpleConfig.GiveUpProvBuyerIncentiveRatio = _model.GiveUpProvBuyerIncentiveRatio;
+        _simpleConfig.GiveUpSellerIncentiveRatio = _model.GiveUpSellerIncentiveRatio;
+        _simpleConfig.Brokerage = _model.Brokerage;
+
+        _simpleConfig.MatchSellerIncentiveRatio = _model.MatchSellerIncentiveRatio;
+        _simpleConfig.MatchBidderIncentiveRatio = _model.MatchBidderIncentiveRatio;
+
+
+        _simpleConfig.Band1.EndValue = _model.Band1EndValue;
+        _simpleConfig.Band1.StartingValueMultiple = _model.Band1StartingValueMultiple ;
+
+        _simpleConfig.Band2.EndValue = _model.Band2EndValue;
+        _simpleConfig.Band2.StartingValueMultiple = _model.Band2StartingValueMultiple ;
+
+        _simpleConfig.Band3.EndValue = _model.Band3EndValue;
+        _simpleConfig.Band3.StartingValueMultiple = _model.Band3StartingValueMultiple ;
+
+        _simpleConfig.Band4.EndValue = _model.Band4EndValue;
+        _simpleConfig.Band4.StartingValueMultiple = _model.Band4StartingValueMultiple ;
+
+        _simpleConfig.Band5.EndValue = _model.Band5EndValue;
+        _simpleConfig.Band5.StartingValueMultiple = _model.Band5StartingValueMultiple ;
+
+        _simpleConfig.Band6.EndValue = _model.Band6EndValue;
+        _simpleConfig.Band6.StartingValueMultiple = _model.Band6StartingValueMultiple ;
+    }
+
+    private void InitValues()
+    {
+        _simpleConfig = LrrState.Configuration as Lrr.Shared.ConfigurationBands;
+        if (_simpleConfig == null)
+        {
+            _model.Invalidate();
+            return;
+        }
+
+        _model.StampChargePercentage = _simpleConfig.StampChargePercentage;
+        _model.RegistrationChargePercentage = _simpleConfig.RegistrationChargePercentage;
+        
+        _model.AuctionDuration = _simpleConfig.AuctionDuration;
+
+        _model.GiveUpProvBuyerIncentiveRatio = _simpleConfig.GiveUpProvBuyerIncentiveRatio;
+        _model.GiveUpSellerIncentiveRatio = _simpleConfig.GiveUpSellerIncentiveRatio;
+        _model.Brokerage = _simpleConfig.Brokerage;
+
+        _model.MatchSellerIncentiveRatio = _simpleConfig.MatchSellerIncentiveRatio;
+        _model.MatchBidderIncentiveRatio = _simpleConfig.MatchBidderIncentiveRatio;
+
+        _model.Band1EndValue = _simpleConfig.Band1.EndValue;
+        _model.Band1StartingValueMultiple = _simpleConfig.Band1.StartingValueMultiple;
+
+        _model.Band2EndValue = _simpleConfig.Band2.EndValue;
+        _model.Band2StartingValueMultiple = _simpleConfig.Band2.StartingValueMultiple;
+
+        _model.Band3EndValue = _simpleConfig.Band3.EndValue;
+        _model.Band3StartingValueMultiple = _simpleConfig.Band3.StartingValueMultiple;
+
+        _model.Band4EndValue = _simpleConfig.Band4.EndValue;
+        _model.Band4StartingValueMultiple = _simpleConfig.Band4.StartingValueMultiple;
+
+        _model.Band5EndValue = _simpleConfig.Band5.EndValue;
+        _model.Band5StartingValueMultiple = _simpleConfig.Band5.StartingValueMultiple;
+
+        _model.Band6EndValue = _simpleConfig.Band6.EndValue;
+        _model.Band6StartingValueMultiple = _simpleConfig.Band6.StartingValueMultiple;
+
+
+    }
+
+}

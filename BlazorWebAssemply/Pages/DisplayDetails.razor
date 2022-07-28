@@ -50,7 +50,7 @@
                 <td>
                     ₹ @LrrState.AuctionDetails.FmtStartingValue
                 </td>
-                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (Auction starting value multiple ${LrrState.Configuration.StartingValueMultiple})")</td>
+                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (Auction starting value multiple ${LrrState.GetStartingValueMultiple()})")</td>
             </tr>
 
             <tr>
@@ -60,7 +60,7 @@
                 <td>
                     ₹ @LrrState.AuctionDetails.FmtStepValue
                 </td>
-                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (Auction step value multiple ${LrrState.Configuration.StepValueMultiple})")</td>
+<!--                <td class="td-notes" >@($"(purchase value ${LrrState.InputData.PurchaseValue} ) * (Auction step value multiple ${LrrState.Configuration.StepValueMultiple})")</td>-->
             </tr>
         </tbody>
 </table>

@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace Lrr.Shared
 {
-    public class SimpleConfiguration : IConfiguration
+    public class SimpleConfiguration : Configuration, IConfiguration, ISimpleConfiguration
     {
-        public SimpleConfiguration()
+        public SimpleConfiguration() : base()
+        {
+            StartingValueMultiple = 1.5;
+        }
+        public double StartingValueMultiple { get; set; }
+
+        public override double GetStartingValueMultiple(int regValue)
+        {
+            return StartingValueMultiple;
+        }
+    }
+    public abstract class Configuration : IConfiguration
+    {
+        public Configuration()
         {
             StampChargePercentage = 0.07;
             RegistrationChargePercentage = 0.01;
             AuctionDuration = 3;
-            StartingValueMultiple = 1.5;
-            StepValueMultiple = 0.02;
+            
+            
 
             /* Give up Ratios*/
             GiveUpProvBuyerIncentiveRatio = 0.2;
@@ -30,8 +43,8 @@ namespace Lrr.Shared
         public double RegistrationChargePercentage { get; set; }
 
         public int AuctionDuration { get; set; }
-        public double StartingValueMultiple { get; set; }
-        public double StepValueMultiple { get; set; }
+        
+        
 
         public double GiveUpProvBuyerIncentiveRatio { get; set; }
         public double GiveUpSellerIncentiveRatio { get; set; }
@@ -39,5 +52,8 @@ namespace Lrr.Shared
 
         public double MatchSellerIncentiveRatio { get; set; }
         public double MatchBidderIncentiveRatio { get; set; }
+
+        public abstract double GetStartingValueMultiple(int regValue);
+        
     }
 }
