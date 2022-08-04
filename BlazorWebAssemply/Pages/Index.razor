@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using Lrr.Models;
+@using Microsoft.AspNetCore.WebUtilities;
+@using Microsoft.Extensions.Primitives;
 @inject Lrr.Shared.LrrState LrrState
 
 
@@ -45,6 +47,50 @@
 <img src=/iceberg.jpg height=200px width="200px"  />
 
 @code{
+    [Inject]
+    public NavigationManager navManager { get; set; }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        var key = "calcName";
+        StringValues valueFromQueryString;
+        var uri = navManager.ToAbsoluteUri(navManager.Uri);
+        var foundQueryParameter = QueryHelpers.ParseQuery(uri.Query).TryGetValue(key,  out valueFromQueryString);
+
+        if (foundQueryParameter)
+        {
+            var strPage =  Convert.ToString(valueFromQueryString);
+
+            if (!string.IsNullOrWhiteSpace(strPage))
+            {
+                if(strPage.Contains("StepValue", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    navManager.NavigateTo("/simpleCalculatorStepValue");
+                }
+                else if(strPage.Contains("Bands", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    navManager.NavigateTo("/calculatorBands");
+                }
+                else if(strPage.Contains("Curve", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    navManager.NavigateTo("/calculatorCurve");
+                }
+                else 
+                {
+                    navManager.NavigateTo("/simpleCalculator");
+                }
+
+            }
+           
+        }
+
+        
+    }
+
+    
 
     private void DisplayEdiConfig()
     {
