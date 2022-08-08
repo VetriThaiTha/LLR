@@ -37,16 +37,16 @@
         <span>Simple calculator used to calculate payment schedule based on user inputs.</span>
     </li>
     <li>
-        <NavLink class="nav-link" href="simpleCalculatorStepValue">Simple Calculator with step auction value</NavLink>
-        <span>Calculator which enforces bid increments.</span>
+        <NavLink class="nav-link" href="simpleCalculatorBidIncrements">Calculator with bid increments</NavLink>
+        <span>Calculator which enforces <a href="https://support.bidspotter.com/hc/en-gb/articles/360006568574-What-are-auctioneer-bidding-increments-" target="_blank" >bid increments</a> for auctions.</span>
     </li>
     <li>
         <NavLink class="nav-link" href="calculatorBands">Calculator with Bands </NavLink>
-        <span>Calculator which uses price bands for auction starting value.</span>
+        <span>Calculator which uses price bands to calculate the auction starting value (barrier price). </span>
     </li>
     <li>
         <NavLink class="nav-link" href="calculatorCurve">Calculator with Curve </NavLink>
-        <span>Calculator which uses a linear curve to calculate the auction starting value.</span>
+        <span>Calculator which uses a linear curve to calculate the auction starting value (barrier price).</span>
     </li>
 </ul>
 
@@ -95,7 +95,11 @@
             {
                 if(strPage.Contains("StepValue", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    navManager.NavigateTo("/simpleCalculatorStepValue");
+                    navManager.NavigateTo("/simpleCalculatorBidIncrements");
+                }
+                else if(strPage.Contains("BidIncrements", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    navManager.NavigateTo("/simpleCalculatorBidIncrements");
                 }
                 else if(strPage.Contains("Bands", StringComparison.InvariantCultureIgnoreCase))
                 {
