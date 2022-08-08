@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using Lrr.Models;
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Land Registration Reform</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -14,31 +16,90 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
+
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="simpleCalculator">
-                <span class="oi oi-plus" aria-hidden="true"></span> Simple Calculator
+
+            <NavLink class="nav-link" @onclick="()=>expandCalcNav = !expandCalcNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Calculators
             </NavLink>
+
+            @if (expandCalcNav)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="simpleCalculator">
+                    <span class="oi oi-plus" aria-hidden="true"></span>Simple
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="simpleCalculatorStepValue">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Step Value
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="calculatorBands">
+                    <span class="oi oi-plus" aria-hidden="true"></span>Bands
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="calculatorCurve">
+                    <span class="oi oi-plus" aria-hidden="true"></span>Curve
+                </NavLink>
+            </div>
+        }
         </div>
+
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="simpleCalculatorStepValue">
-                <span class="oi oi-plus" aria-hidden="true"></span> Step Value Calculator
+
+            <NavLink class="nav-link" @onclick="()=>expandVideoNav = !expandVideoNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Videos
             </NavLink>
+
+            @if (expandVideoNav)
+        {
+            <div class="nav-item px-3">
+                <a class="nav-link" href="@Constants.Url_Video_Main" target="_blank">Main video</a>
+            </div>
+            <div class="nav-item px-3">
+                <a class="nav-link" href="@Constants.Url_Video_Faq" target="_blank">Faq video</a>
+            </div>
+            <div class="nav-item px-3">
+                <a class="nav-link" href="@Constants.Url_Video_Details" target="_blank">Technical details</a>
+            </div>
+        }
         </div>
+
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="calculatorBands">
-                <span class="oi oi-plus" aria-hidden="true"></span>Calculator Bands
+
+            <NavLink class="nav-link" @onclick="()=>expandDocumentNav = !expandDocumentNav">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Documents
             </NavLink>
+
+            @if (expandDocumentNav)
+            {
+                <div class="nav-item px-3">
+                    <a class="nav-link" href=@Constants.Url_Document_Principle target="_blank">Principle</a>
+                </div>
+                <div class="nav-item px-3">
+                        <a class="nav-link" href=@Constants.Url_Document_Plan target="_blank">Detail</a>
+                </div>
+                <div class="nav-item px-3">
+                    <a class="nav-link" href=@Constants.Url_Document_Scenario target="_blank">Scenarios</a>
+                </div>
+                <div class="nav-item px-3">
+                    <a class="nav-link" href=@Constants.Url_Document_References target="_blank">References</a>
+                </div>
+            }
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="calculatorCurve">
-                <span class="oi oi-plus" aria-hidden="true"></span>Calculator Curve
-            </NavLink>
-        </div>
+
 
     </nav>
 </div>
 
 @code {
+    private bool expandCalcNav;
+    private bool expandVideoNav;
+    private bool expandDocumentNav;
+
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
@@ -47,4 +108,8 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+
+
+
 }

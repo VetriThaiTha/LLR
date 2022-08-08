@@ -7,44 +7,71 @@
 
 <PageTitle>Land Registration Reform Simple Calculator</PageTitle>
 
-<h3>“If all of your dreams came true, would they just change you or would they change the world?”</h3>
-        <h4> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ― Cleo Wade</h4>
 
 
-
-<NavLink class="nav-link" href="simpleCalculator">Simple Calculator</NavLink>
-<NavLink class="nav-link" href="simpleCalculatorStepValue">Simple Calculator with step auction value</NavLink>
-<NavLink class="nav-link" href="calculatorBands">Calculator with Bands </NavLink>
-<NavLink class="nav-link" href="calculatorCurve">Calculator with Curve </NavLink>
-<H3> Videos:</H3>
+<H3 style="color: rgba(0,0,0,0.6); text-shadow: 5px 5px 10px #5451f5; "> Proposal documents:</H3>
 <ul>
     <li>
-        <a href="https://www.youtube.com/watch?v=wXPBNq0mb7I&list=PL0p_U_-Or0_P31P751VvT81OwYEDX0KyC&index=2" target="_blank">Main video</a>
+        <a href=@Constants.Url_Document_Principle target="_blank">Principle</a> 
+            <span>The document explains the principle behind the proposal.</span>
     </li>
     <li>
-        <a href="https://www.youtube.com/watch?v=TBtxBxYsUvU&list=PL0p_U_-Or0_P31P751VvT81OwYEDX0KyC&index=3" target="_blank">Faq video</a>
+        <a href=@Constants.Url_Document_Plan target="_blank">Plan detail</a>
+         <span>Explains the plan in detail</span>
     </li>
     <li>
-        <a href="https://www.youtube.com/watch?v=-SiythpXx1U&list=PL0p_U_-Or0_P31P751VvT81OwYEDX0KyC&index=4" target="_blank">Main video</a>
+        <a href="@Constants.Url_Document_Scenario" target="_blank">Scenarios</a>
+        <span>Apply the plan for a few scenarios and shows the impact.</span>
+    </li>
+    <li>
+        <a href="@Constants.Url_Document_References" target="_blank">References</a>
+        <span>Reference documents</span>
     </li>
     
 </ul>
 
-<H3> Documents:</H3>
+<H3 style="color: rgba(0,0,0,0.6); text-shadow: 5px 5px 10px #5451f5; "> Calculators:</H3>
 <ul>
     <li>
-        <a href="https://medium.com/@@thaithavetri/land-registration-reform-principle-b267413b7365" target="_blank">Principle</a>
+        <NavLink class="nav-link" href="simpleCalculator">Simple Calculator</NavLink>
+        <span>Simple calculator used to calculate payment schedule based on user inputs.</span>
     </li>
     <li>
-        <a href="https://medium.com/@@thaithavetri/plan-details-cfc7f89c01a4" target="_blank">Plan detail</a>
+        <NavLink class="nav-link" href="simpleCalculatorStepValue">Simple Calculator with step auction value</NavLink>
+        <span>Calculator which enforces bid increments.</span>
     </li>
     <li>
-        <a href="https://medium.com/@@thaithavetri/scenarios-land-registration-reform-c6c0e0b8047a" target="_blank">Scenarios</a>
+        <NavLink class="nav-link" href="calculatorBands">Calculator with Bands </NavLink>
+        <span>Calculator which uses price bands for auction starting value.</span>
+    </li>
+    <li>
+        <NavLink class="nav-link" href="calculatorCurve">Calculator with Curve </NavLink>
+        <span>Calculator which uses a linear curve to calculate the auction starting value.</span>
+    </li>
+</ul>
+
+<H3 style="color: rgba(0,0,0,0.6); text-shadow: 5px 5px 10px #5451f5; "> Videos:</H3>
+<ul>
+    <li>
+        <a href="@Constants.Url_Video_Main" target="_blank">Main video</a>
+        <span>A video which explains the principle of the land registration reform.</span>
+    </li>
+    <li>
+        <a href="@Constants.Url_Video_Faq" target="_blank">Faq video</a>
+        <span>Explains the impacts.</span>
+    </li>
+    <li>
+        <a href="@Constants.Url_Video_Details" target="_blank">Technical details</a>
+        <span>Explains the technical details.</span>
     </li>
     
 </ul>
+
+
 
 <img src=/iceberg.jpg height=200px width="200px"  />
+
+<h6 >“If all of your dreams came true, would they just change you or would they change the world?” ― Cleo Wade</h6>
 
 @code{
     [Inject]
