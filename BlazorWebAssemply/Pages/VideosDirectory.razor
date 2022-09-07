@@ -1,0 +1,21 @@
+﻿@page "/videosList"
+@using Lrr.Models;
+
+<PageTitle>Land Registration Reform - Videos</PageTitle>
+
+<H3 style="color: rgba(0,0,0,0.6); text-shadow: 5px 5px 10px #5451f5; "> Videos:</H3>
+<ul>
+
+    @foreach (var item in @Constants.LinkDefinitions.OrderBy(c => c.Key))
+   {
+    <li>
+        <a href="@item.Value.Link" target="_blank">@item.Value.Name</a>
+        <span>@item.Value.Desc</span>
+    </li>   
+   }
+  
+</ul>
+
+@code {
+
+}
