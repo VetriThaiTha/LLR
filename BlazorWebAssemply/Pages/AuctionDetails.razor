@@ -1,5 +1,5 @@
 ﻿@using Lrr.Shared;
-
+@inject IModalService modal  
 <table class="reportTable">
         <thead class="reportHead">
             <tr  >
@@ -40,6 +40,9 @@
             <tr>
                 <td class="td-report" >
                     Highest bid value:
+                    <!-- 
+                        Popup modal help demo
+                    <span @onclick="@(()=>modal.Show<HelpPage>("Help"))" >?</span>-->
                 </td>
                 <td class="td-report" >
                     ₹<InputNumber class="formatinput" style="width:13ch" id="HighestBid" @bind-Value="HighestBid"    />
